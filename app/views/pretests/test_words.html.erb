@@ -1,0 +1,18 @@
+<%= javascript_include_tag "pretest" %>
+<div class="head"><div class="time">00:30</div><a href="#" class="close">CLOSE</a></div>
+<div class="main">
+  <div class="mc_box">
+    <input type="hidden" value="" id="level" />
+    <%= render :partial=>"/pretests/word_con",:object=>@words %>
+  </div>
+</div>
+<div class="foot"></div>
+<script type="text/javascript">
+  var level= <%= @level %>;
+  var min_level=<%= params[:min_level].to_i %>
+  var max_level=<%= params[:max_level].to_i %>
+  var total_step=0;
+  var success_times=0
+  var error_times=0
+  var test_ids=""
+</script>
