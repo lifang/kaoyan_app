@@ -1,0 +1,2 @@
+class PreamblesController < ApplicationController
+end
