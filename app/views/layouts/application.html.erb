@@ -1,14 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>KaoyanApp</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8"/>
+    <title>前测APP</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <!--[if IE 6]>
+    <script src="/assets/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>
+      DD_belatedPNG.fix('*');
+    </script>
+    <![endif]-->
+  </head>
 
-<%= yield %>
-
-</body>
+  <body>
+    <div class="wrap">
+      <%= yield %>
+    </div>
+  </body>
 </html>
