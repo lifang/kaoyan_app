@@ -1,0 +1,14 @@
+<div class="words_func">
+  <a href="#" title="播放音频" class="play_audio">播放音频</a>
+  <h1><%=word_con[0].name  %><span class="fyin"><%=word_con[0].phonetic  %></span></h1>
+</div>
+<div class="words_con">
+  <ul class="words_ul">
+    <% word_con.shuffle.each do |word| %>
+      <li><a href="#" id="<%= word.id %>" onclick="$('.words_ul a').removeClass('hover_on','');$(this).addClass('hover_on');"><%= Word::TYPES[word.types] %><span><%= word.ch_mean %></span></a></li>
+    <% end %>
+  </ul>
+</div>
+<div class="words_func">
+  <a href="#" title="下一步" class="next" onclick="check_answer('<%=word_con[0].id %>')">Next</a>
+</div>
