@@ -1,8 +1,12 @@
-$('.main').html("<%= escape_javascript(render :partial => 'sentence_div') %>");
-<% if @level_change_flag == true %>
-  true_time = 0;
-  error_time = 0;
+<% unless @is_end %>
+  $('.main').html("<%= escape_javascript(render :partial => 'sentence_div') %>");
+  <% if @level_change_flag == true %>
+    true_time = 0;
+    error_time = 0;
+  <% end %>
+  arr_to_choice(_ans_arr);
+  local_start_time = new Number($("#start_time").html().split(":")[1]);
+  local_save_start();
+<% else %>
+  alert(1);
 <% end %>
-arr_to_choice(_ans_arr);
-local_start_time = new Number($("#start_time").html().split(":")[1]);
-local_save_start();

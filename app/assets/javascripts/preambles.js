@@ -142,16 +142,14 @@ function get_next_sentence() {
     window.clearInterval(local_timer);
     $.ajax({
         async:true,
-        complete:function(request){
-
-            
-        },
         data:{
             current_level : $("#current_level").val(),
             sentence_ids : $("#sentence_ids").val(),
             true_time : true_time,
             error_time : error_time,
-            end_level : $("#end_level").val()
+            category_id : $("#category_id").val(),
+            l_end_level : $("#l_end_level").val(),
+            l_start_level : $("#l_start_level").val()
         },
         dataType:'script',
         url:"/preambles/next_sentence",
