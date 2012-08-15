@@ -124,17 +124,15 @@ button {cursor: pointer; font-family:"微软雅黑";}
 	background:  #FFF;
 }
 .drag_ul { overflow: hidden; clear: both;}
-.drag_ul li {
-    cursor: pointer;
-	padding: 2px 10px;
+.drag_ul button {
+	padding: 5px 10px;
 	background: #FFF;
 	float: left;
 	margin: 5px;
 	box-shadow:0px 1px 1px #a2c2c3;
 	text-indent: 0;
+	border: none;
 }
-.drag_ul li:hover { background: #f8f8f8;}
-
 .question_list { margin: 10px 0;}
 .question_list a {
 	display: block;
