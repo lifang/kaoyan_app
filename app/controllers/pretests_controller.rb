@@ -5,7 +5,7 @@ class PretestsController < ApplicationController
   def test_words
     cookies[:user_id]=2
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    user_score=UserScoreInfo.find_by_user_id(cookies[:user_id])
+    user_score=UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id])
     if user_score.nil?
       UserScoreInfo.create({:category_id=>category,:user_id=>cookies[:user_id]})
     else
@@ -71,7 +71,8 @@ class PretestsController < ApplicationController
   end
 
   def revoke_exam
-    UserScoreInfo.find_by_user_id(cookies[:user_id]).destroy
+    category=params[:category_id].nil? ? 4 : params[:category_id].to_i
+    UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id]).destroy
     respond_to do |format|
       format.json {
         render :json=>"1"

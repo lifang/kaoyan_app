@@ -49,4 +49,9 @@ class PreamblesController < ApplicationController
     end
   end
 
+  def test_result
+    category=params[:category_id].nil? ? 4 : params[:category_id].to_i
+    @user_score=UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id])
+  end
+
 end

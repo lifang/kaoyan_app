@@ -185,7 +185,7 @@ function send_listen(level){
         dataType: "json",
         success : function(data) {
             alert("前测结束，输入考研目标分数");
-            window.location.href="/preambles/test_result"
+            window.location.href="/preambles/test_result?category_id="+category_id
         }
     })
 }
@@ -197,6 +197,9 @@ function revoke_exam(){
             type: "POST",
             url: "/pretests/revoke_exam",
             dataType: "json",
+            data:{
+                category_id : category_id
+            },
             success : function(data) {
                 window.location.href="/"
             }

@@ -165,6 +165,9 @@ function revoke_exam(){
             type: "POST",
             url: "/pretests/revoke_exam",
             dataType: "json",
+            data:{
+                category_id : category_id
+            },
             success : function(data) {
                 window.location.href="/"
             }
