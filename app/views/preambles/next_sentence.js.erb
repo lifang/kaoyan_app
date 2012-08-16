@@ -5,7 +5,7 @@
     error_time = 0;
   <% end %>
   arr_to_choice(_ans_arr);
-  local_start_time = new Number($("#start_time").html().split(":")[1]);
+  local_start_time = _ans_arr.length * 2;
   local_save_start();
 <% else %>
   window.location.href="/pretests/listen?category_id=<%= @category_id %>"
