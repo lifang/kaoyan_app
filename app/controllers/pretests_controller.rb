@@ -3,7 +3,7 @@ class PretestsController < ApplicationController
   respond_to :html, :xml, :json
 
   def test_words
-    cookies[:user_id]=1
+    cookies[:user_id]=2
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
     user_score=UserScoreInfo.find_by_user_id(cookies[:user_id])
     if user_score.nil?
@@ -30,7 +30,8 @@ class PretestsController < ApplicationController
 
 
   def level_record
-    UserScoreInfo.find_by_user_id(cookies[:user_id]).update_attributes(:all_start_level=>"#{params[:fact_level]}, , ")
+    category=params[:category_id].nil? ? 4 : params[:category_id].to_i
+    UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id]).update_attributes(:all_start_level=>"#{params[:fact_level]}, , ")
     respond_to do |format|
       format.json {
         render :json=>"1"

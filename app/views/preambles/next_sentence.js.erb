@@ -8,5 +8,5 @@
   local_start_time = new Number($("#start_time").html().split(":")[1]);
   local_save_start();
 <% else %>
-  alert(1);
+  window.location.href="/pretests/listen?category_id=<%= @category_id %>"
 <% end %>

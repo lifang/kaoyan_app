@@ -10,7 +10,6 @@ class PreamblesController < ApplicationController
   end
 
   def next_sentence
-    cookies[:user_id] = 1
     @category_id = params[:category_id].to_i
     @sentence_ids = []
     alreay_ids = params[:sentence_ids].split(",").collect { |i| i.to_i }

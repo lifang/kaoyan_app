@@ -14,7 +14,8 @@ function send_record(level){
         type: "POST",
         url: "/pretests/level_record",
         data:{
-            fact_level : level
+            fact_level : level,
+            category_id : category_id
         },
         dataType: "json",
         success : function(data) {
@@ -179,7 +180,7 @@ function send_listen(level){
         url: "/pretests/level_listen",
         data:{
             fact_level : level,
-            category_id : category
+            category_id : category_id
         },
         dataType: "json",
         success : function(data) {
