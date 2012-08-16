@@ -43,11 +43,7 @@ class PreamblesController < ApplicationController
         :order => "rand()")
       @sentence_ids << @sentence.id
     else
-      info = UserScoreInfo.find_or_create_by_category_id_and_user_id(@category_id, cookies[:user_id])
-      levels = (info.all_start_level.nil? or info.all_start_level.empty?) ? [0, 0, 0] : info.all_start_level.split(",")
-      levels[1] = @user_level
-      info.all_start_level = levels.join(",")
-      info.save
+      UserScoreInfo.update_sentence_level(@category_id, cookies[:user_id], @user_level, UserScoreInfo::LEVEL_INDEX[:SENTENCE])
     end
     respond_to do |format|
       format.js
