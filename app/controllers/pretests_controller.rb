@@ -60,10 +60,8 @@ class PretestsController < ApplicationController
   end
 
   def level_listen
-    user_score=UserScoreInfo.find_by_user_id(cookies[:user_id])
-    scores=user_score.all_start_level.split(",")
-    scores[2]=params[:fact_level]
-    user_score.update_attributes(:all_start_level=>"#{scores.join(",")}")
+    category=params[:category_id].nil? ? 4 : params[:category_id].to_i
+    UserScoreInfo.update_sentence_level(category, cookies[:user_id], params[:fact_level].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
     respond_to do |format|
       format.json {
         render :json=>"1"

@@ -178,7 +178,8 @@ function send_listen(level){
         type: "POST",
         url: "/pretests/level_listen",
         data:{
-            fact_level : level
+            fact_level : level,
+            category_id : category
         },
         dataType: "json",
         success : function(data) {
