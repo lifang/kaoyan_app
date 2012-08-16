@@ -1,7 +1,20 @@
 <div class="words_func">
-  <a href="#" title="播放音频" class="play_audio">播放音频</a>
+  <a href="#" title="播放音频" class="play_audio" onclick="jplayer_play()">播放音频</a>
   <h1><%=word_con[0].name  %><span class="fyin"><%=word_con[0].phonetic  %></span></h1>
 </div>
+<div><a  href='/music.mp3' id="player"> </a></div>
+<script type="text/javascript">
+  local_save_start('<%=word_con[0].id  %>');
+  flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.14.swf", {
+    clip: {
+      url: '<%= word_con[0].enunciate_url %>'
+    }
+  });
+  function jplayer_play(){
+    flowplayer("player").play();
+  }
+
+</script>
 <div class="words_con">
   <ul class="words_ul">
     <% word_con.shuffle.each do |word| %>

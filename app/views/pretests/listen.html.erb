@@ -3,9 +3,9 @@
 <%category=params[:category_id].nil? ? 4 : params[:category_id]%>
 <script type="text/javascript">
   //单词测试
-  var level= <%= @level %>;
+  var level= <%= @user_level %>;
   var min_level=0;
-  var max_level=<%=@max_level %>
+  var max_level=<%=@end_level %>
   var total_step=0;
   var success_times=0
   var error_times=0
@@ -16,11 +16,11 @@
   var local_timer = null;
   var local_save_time = null;
 </script>
-
-<div class="head"><div class="time">00:30</div><a href="#" class="close" onclick="revoke_exam()">CLOSE</a></div>
+<div class="head"><div class="time">00:</div><a href="#" class="close" onclick="revoke_exam()">CLOSE</a></div>
 <div class="main">
   <div class="mc_box">
-    <%= render :partial=>"/pretests/word_con",:object=>@words %>
+    <%= render :partial=>"/pretests/listen_con",:object=>@listen %>
   </div>
 </div>
 <div class="foot"></div>
+

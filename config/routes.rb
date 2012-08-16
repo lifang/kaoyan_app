@@ -4,8 +4,8 @@ KaoyanApp::Application.routes.draw do
 
   resources :pretests do
     collection do
-      get :test_words
-      post :other_words,:level_record
+      get :test_words,:listen
+      post :other_words,:level_record,:other_listens,:level_listen,:revoke_exam
     end
   end
   # Sample of regular route:
@@ -19,7 +19,7 @@ KaoyanApp::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :preambles do
     collection do
-      get :sentence
+      get :sentence,:test_result
       post :next_sentence
     end
   end
