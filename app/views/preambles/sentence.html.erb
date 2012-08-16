@@ -7,7 +7,10 @@
   var error_time = 0; //记录错误次数，两次连错降级
   var _history = [];  //记录操作历史，用于撤销操作
 </script>
-<div class="head"><div class="time">00:5</div><div id="start_time">00:5</div><a href="#" class="close">CLOSE</a></div>
+<div class="head">
+  <div class="time">00:5</div>
+  <a href="#" class="close">CLOSE</a>
+</div>
 <div class="main">  
   <%= render :partial => "sentence_div" %>
 </div>
@@ -15,7 +18,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     arr_to_choice(_ans_arr);
-    local_start_time = new Number($("#start_time").html().split(":")[1]);
+    local_start_time = _ans_arr.length * 2;
     local_save_start();
   });
 </script>

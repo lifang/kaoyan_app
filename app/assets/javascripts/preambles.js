@@ -58,7 +58,7 @@ function local_save() {
         
     }
     var end_date = new Date();
-    if ((end_date - local_save_time) > 100 && (end_date - local_save_time) < 1000) {
+    if ((end_date - local_save_time) > 500 && (end_date - local_save_time) < 5000) {
         local_start_time = Math.round((local_start_time - (end_date - local_save_time)/1000)*10)/10;        
     } else {
         local_start_time = Math.round((local_start_time - 0.1 - (end_date - start_date)/1000)*10)/10;
@@ -68,7 +68,7 @@ function local_save() {
 
 //重新启动定时器
 function reset_clock() {
-    local_start_time = 60;
+    local_start_time = _ans_arr.length * 3;
     local_save_time = null;
     local_save_start();
 }
