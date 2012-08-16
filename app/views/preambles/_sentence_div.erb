@@ -1,6 +1,8 @@
 <%= javascript_include_tag "preambles" %>
+<input type="hidden" id="category_id" value="<%= @category_id %>"/>
+<input type="hidden" id="l_start_level" value="<%= @last_start_level %>"/>
 <input type="hidden" id="current_level" value="<%= @user_level %>"/>
-<input type="hidden" id="end_level" value=""/>
+<input type="hidden" id="l_end_level" value="<%= @last_end_level %>"/>
 <input type="hidden" id="sentence_ids" value="<%= @sentence_ids.join(",") %>"/>
 <div class="mc_box" id="read">
   <div class="words_func">
