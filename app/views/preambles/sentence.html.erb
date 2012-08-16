@@ -8,8 +8,8 @@
   var _history = [];  //记录操作历史，用于撤销操作
 </script>
 <div class="head">
-  <div class="time">00:5</div>
-  <a href="#" class="close">CLOSE</a>
+  <div class="time"></div>
+  <a href="javascript:void(0);" class="close"  onclick="revoke_exam()">CLOSE</a>
 </div>
 <div class="main">  
   <%= render :partial => "sentence_div" %>

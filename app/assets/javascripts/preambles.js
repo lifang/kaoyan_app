@@ -157,3 +157,17 @@ function get_next_sentence() {
     });
     return false;
 }
+
+function revoke_exam(){
+    if(confirm("结束测试将取消本次的成绩")){
+        $.ajax({
+            async:true,
+            type: "POST",
+            url: "/pretests/revoke_exam",
+            dataType: "json",
+            success : function(data) {
+                window.location.href="/"
+            }
+        })
+    }
+}
