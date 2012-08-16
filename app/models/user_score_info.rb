@@ -19,16 +19,16 @@ class UserScoreInfo < ActiveRecord::Base
   #更新初始成绩
   def get_start_score(levels, index)
     if self.category_id == Category::TYPE[:GRADUATE] and index == LEVEL_INDEX[:SENTENCE]
-      self.start_score = (levels[0].to_f/Word::MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:WORD]
-        + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:SENTENCE]).ceil * MAX_SCORE[:GRADUATE]
+      self.start_score = ((levels[0].to_f/Word::MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:WORD]
+        + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:SENTENCE]) * MAX_SCORE[:GRADUATE]).round
     elsif self.category_id == Category::TYPE[:CET4] and index == LEVEL_INDEX[:LINSTEN]
-      self.start_score = (levels[0].to_f/Word::MAX_LEVEL[:CET4] * CET_PERCENT[:WORD]
+      self.start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET4] * CET_PERCENT[:WORD]
         + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET4] * CET_PERCENT[:SENTENCE]
-        + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET4] * CET_PERCENT[:LINSTEN]).ceil * MAX_SCORE[:CET]
+        + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET4] * CET_PERCENT[:LINSTEN]) * MAX_SCORE[:CET]).round
     elsif self.category_id == Category::TYPE[:CET6] and index == LEVEL_INDEX[:LINSTEN]
-      self.start_score = (levels[0].to_f/Word::MAX_LEVEL[:CET6] * CET_PERCENT[:WORD]
+      self.start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET6] * CET_PERCENT[:WORD]
         + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET6] * CET_PERCENT[:SENTENCE]
-        + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET6] * CET_PERCENT[:LINSTEN]).ceil * MAX_SCORE[:CET]
+        + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET6] * CET_PERCENT[:LINSTEN]) * MAX_SCORE[:CET]).round
     end
   end
 

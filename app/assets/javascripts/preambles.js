@@ -35,7 +35,7 @@ function local_save() {
     var start_date = new Date();
     if (local_start_time <= 0) {
         if (parseInt(local_start_time) == parseFloat(local_start_time)) {            
-            if ($("#read").css("display") != "none") {
+            if ($("#read").length > 0) {
                 $('#read').fadeTo("slow", 0, function(){
                     $(this).remove();
                     $("#write").fadeIn("show");
