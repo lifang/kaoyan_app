@@ -1,0 +1,8 @@
+<%unless  @user_plan["TARGET_SCORE"].nil?%>
+  if(confirm("根据前测，您的理想分数最高是<%= @user_plan["TARGET_SCORE"].to_i %>,是否根据此分数生成复习计划")){
+  $(".fenshu_box").html("<%= escape_javascript(render :partial => "/preambles/personal_info",:object=>"#{@user_plan}".gsub("=>",":")) %>");
+  }
+<% else %>
+  $(".fenshu_box").html("<%= escape_javascript(render :partial => "/preambles/personal_info",:object=>"#{@user_plan}".gsub("=>",":")) %>");
+<% end %>
+

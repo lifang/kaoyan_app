@@ -5,6 +5,13 @@ class UserScoreInfo < ActiveRecord::Base
   GRADUATE_PERCENT = {:WORD => 0.45, :SENTENCE => 0.55} #单词45%，句子55%
   LEVEL_INDEX = {:WORD => 0, :SENTENCE => 1, :LINSTEN => 2} #all_start_level中的各个等级位置
   MAX_SCORE = {:CET => 550, :GRADUATE => 75} #四六级550分，考研75分
+  READ_MAX_LEVEL = {:CET4 => 16, :CET6 => 21, :GRADUATE => 26}
+  WRITE_MAX_LEVEL = {:CET4 => 16, :CET6 => 21, :GRADUATE => 26}
+  DEAD_LINE = {
+    :CET4 => '2012-9-12',
+    :CET6 => '2012-10-7',
+    :GRADUATE => '2012-10-7'
+  }
 
   #更新句子的等级
   def self.update_sentence_level(category_id, user_id, final_level, index)

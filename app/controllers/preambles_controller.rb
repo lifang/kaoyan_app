@@ -54,4 +54,41 @@ class PreamblesController < ApplicationController
     @user_score=UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id])
   end
 
+  def create_plan
+    category=params[:category_id].nil? ? 4 : params[:category_id].to_i
+    plans=UserPlan.calculate_user_plan_info(cookies[:user_id], Category::TYPE[Category::FLAG[category]], params[:target_score].to_i)
+    plans.merge!(:DAYS=>UserPlan.package_level(Category::TYPE[Category::FLAG[category]]))
+    @user_plan={}
+    plans.each do |k,v|
+      @user_plan["#{k}"]="#{v}"
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def init_plan
+    user_score_info = UserScoreInfo.find_by_category_id_and_user_id(params[:category_id].to_i, cookies[:user_id].to_i)
+    plan_infos=ActiveSupport::JSON.decode params[:plan_infos]
+    data_info={}
+    plan_infos.each do |k,v|
+      data_info[:"#{k}"]=v.to_i
+    end
+    UserPlan.init_plan(user_score_info, data_info, cookies[:user_id].to_i, params[:category_id].to_i)
+    respond_to do |format|
+      format.json {
+        render :json=>"1"
+      }
+    end
+  end
+
+  def update_user
+    user=User.find(cookies[:user_id])
+    infos={:email=>params[:p_email]}
+    infos.merge!(:name=>params[:p_name]) unless params[:p_name]==""
+    infos.merge!(:remarks=>"#{user.remarks} qq:#{params[:p_qq]}") unless params[:p_qq]==""
+    user.update_attributes(infos)
+    redirect_to "/preambles/follows"
+  end
+
 end

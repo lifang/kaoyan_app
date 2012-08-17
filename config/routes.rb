@@ -19,8 +19,8 @@ KaoyanApp::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :preambles do
     collection do
-      get :sentence,:test_result
-      post :next_sentence
+      get :sentence,:test_result,:follows
+      post :next_sentence,:create_plan,:init_plan,:update_user
     end
   end
 
