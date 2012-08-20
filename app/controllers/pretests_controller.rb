@@ -8,11 +8,9 @@ class PretestsController < ApplicationController
     user_score=UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id])
     if user_score.nil?
       UserScoreInfo.create({:category_id=>category,:user_id=>cookies[:user_id]})
-    else
-
     end
     @max_level=Word::MAX_LEVEL[Category::FLAG[category]]
-    @level=(@max_level+1)/2
+    @level=((@max_level+1).to_f/2).round
     @words=Word.get_items_by_level(@level, params[:category_id], 4)
   end
 
@@ -31,7 +29,7 @@ class PretestsController < ApplicationController
 
   def level_record
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id]).update_attributes(:all_start_level=>"#{params[:fact_level]}, , ")
+    UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id]).update_attributes(:all_start_level=>"#{params[:fact_level]},0,0")
     respond_to do |format|
       format.json {
         render :json=>"1"

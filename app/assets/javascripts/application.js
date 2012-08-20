@@ -20,13 +20,13 @@ function generate_flash_div(style) {
 
 //提示框弹出层
 function show_flash_div() {
-    $('.tishi_tab').stop(null,true);
-    generate_flash_div(".tishi_tab");
+    $('.tab').stop(null,true);
+    generate_flash_div(".tab");
     setTimeout(function(){
-        jQuery('.tishi_tab').fadeTo("slow",0);
+        jQuery('.tab').fadeTo("slow",0);
     }, 2500);
     setTimeout(function(){
-        $('.tishi_tab').remove();
+        $('.tab').remove();
     }, 3000);
 }
 
@@ -52,7 +52,7 @@ function create_element(element, name, id, class_name, type, ele_flag) {
 
 //弹出错误提示框
 function tishi_alert(str){
-    var div = create_element("div",null,"flash_notice","tishi_tab",null,null);
+    var div = create_element("div",null,"flash_notice","tab",null,null);
     var p = create_element("p","","","","innerHTML");
     p.innerHTML = str;
     div.appendChild(p);

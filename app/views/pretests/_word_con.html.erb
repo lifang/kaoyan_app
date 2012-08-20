@@ -13,12 +13,12 @@
   function jplayer_play(){
     flowplayer("player").play();
   }
-
 </script>
 <div class="words_con">
   <ul class="words_ul">
     <% word_con.shuffle.each do |word| %>
-      <li><a href="#" id="<%= word.id %>" onclick="$('.words_ul a').removeClass('hover_on','');$(this).addClass('hover_on');"><%= Word::TYPES[word.types] %><span><%= word.ch_mean %></span></a></li>
+      <li><a href="javascript:void(0);" id="<%= word.id %>"
+             onclick="$('.words_ul a').removeClass('hover_on','');$(this).addClass('hover_on');"><%= Word::TYPES[word.types] %><span><%= word.ch_mean %></span></a></li>
     <% end %>
   </ul>
 </div>

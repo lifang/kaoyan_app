@@ -17,16 +17,16 @@ button {cursor: pointer; font-family:"微软雅黑";}
 .title_h2 { color: #e4411e; text-align: center; font-size: 20px; margin-bottom: 15px;}
 .f_btn {
     width: 425px;
-	height: 60px;
-	display: block;
-	line-height: 60px;
-	text-align: center;
-	margin: 0 auto;
-	background: #e4411e;
-	border: 2px #972b14 solid;
-	border-radius: 0.6em;
-	font-size: 28px;
-	color: #e9ddc9;
+    height: 60px;
+    display: block;
+    line-height: 60px;
+    text-align: center;
+    margin: 0 auto;
+    background: #e4411e;
+    border: 2px #972b14 solid;
+    border-radius: 0.6em;
+    font-size: 28px;
+    color: #e9ddc9;
 }
 
 .head { height: 80px; background: #397580; position: relative; overflow: hidden;}
@@ -35,23 +35,23 @@ button {cursor: pointer; font-family:"微软雅黑";}
 .main { height: 488px; background: #b0d3d4; padding: 10px 30px;}
 .close {
     width: 34px;
-	height: 34px;
-	display: block;
-	background: url(/assets/x.png) no-repeat;
-	text-indent: -999px;
-	overflow: hidden;
-	position: absolute;
-	top: 10px;
-	right: 10px;
+    height: 34px;
+    display: block;
+    background: url(/assets/x.png) no-repeat;
+    text-indent: -999px;
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 .time {
-	width: 40px;
-	height: 20px;
-	color: #FFF;
-	padding: 26px 0 0 6px;
-	background: url(/assets/time_bg.png) no-repeat;
-	margin: 15px auto;
-	overflow: hidden;
+    width: 40px;
+    height: 20px;
+    color: #FFF;
+    padding: 26px 0 0 6px;
+    background: url(/assets/time_bg.png) no-repeat;
+    margin: 15px auto;
+    overflow: hidden;
 }
 
 .mc_box { padding: 10px; overflow: hidden;}
@@ -64,19 +64,19 @@ button {cursor: pointer; font-family:"微软雅黑";}
 
 .play_audio, .sign, .next, .reset {
     width: 36px;
-	height: 36px;
-	display: block;
-	overflow: hidden;
-	text-indent: -999px;
+    height: 36px;
+    display: block;
+    overflow: hidden;
+    text-indent: -999px;
 }
 .play_audio {
-	background: url(/assets/icon.png) no-repeat;
+    background: url(/assets/icon.png) no-repeat;
 }
 .reset {
-	position: absolute;
-	top: 5px;
-	right: 10px;
-	background: url(/assets/icon.png) no-repeat 0 -114px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: url(/assets/icon.png) no-repeat 0 -114px;
 }
 
 .sign {background: url(/assets/icon.png) no-repeat 0 -75px; float: left;}
@@ -84,29 +84,29 @@ button {cursor: pointer; font-family:"微软雅黑";}
 
 .confirm {
     height: 36px;
-	padding: 0 15px;
-	border: none;
-	line-height: 36px;
-	background: #FFF;
-	box-shadow: 1px 1px 1px rgba(00,000,000,0.3);
-	border-radius: 0.6em;
-	display: block;
-	float: right;
-	color: #387580;
+    padding: 0 15px;
+    border: none;
+    line-height: 36px;
+    background: #FFF;
+    box-shadow: 1px 1px 1px rgba(00,000,000,0.3);
+    border-radius: 0.6em;
+    display: block;
+    float: right;
+    color: #387580;
 }
 
 .words_con { padding: 5px 10px;}
 .words_ul li { height: 45px; margin: 10px 0;}
 .words_ul li a {
-	height: 45px;
-	display: block;
-	line-height: 45px;
-	padding: 0 20px;
-	font-size: 20px;
-	color: #387580;
-	border-radius: 0.6em;
-	background: #FFF;
-	box-shadow: 0px 1px 1px #a2c2c3;
+    height: 45px;
+    display: block;
+    line-height: 45px;
+    padding: 0 20px;
+    font-size: 20px;
+    color: #387580;
+    border-radius: 0.6em;
+    background: #FFF;
+    box-shadow: 0px 1px 1px #a2c2c3;
 }
 .words_ul li a:hover { background: #f8f8f8;}
 .hover_on { border: 2px #387580 solid; padding: 2px; border-radius: 0.6em;}
@@ -115,34 +115,34 @@ button {cursor: pointer; font-family:"微软雅黑";}
 .w_question { color: #387580; font-size: 16px; line-height: 32px; margin-bottom: 10px; padding: 5px 0px; text-indent: 32px;}
 
 .wq_drag {
-	height: 100px;
-	line-height: 24px;
-	padding: 0 10px;
-	margin: 10px 0;
-	color: #387580;
-	border-radius: 0.6em;
-	background:  #FFF;
+    height: 100px;
+    line-height: 24px;
+    padding: 0 10px;
+    margin: 10px 0;
+    color: #387580;
+    border-radius: 0.6em;
+    background:  #FFF;
 }
 .drag_ul { overflow: hidden; clear: both;}
 .drag_ul button {
-	padding: 5px 10px;
-	background: #FFF;
-	float: left;
-	margin: 5px;
-	box-shadow:0px 1px 1px #a2c2c3;
-	text-indent: 0;
-	border: none;
+    padding: 5px 10px;
+    background: #FFF;
+    float: left;
+    margin: 5px;
+    box-shadow:0px 1px 1px #a2c2c3;
+    text-indent: 0;
+    border: none;
 }
 .question_list { margin: 10px 0;}
 .question_list a {
-	display: block;
-	line-height: 28px;
-	padding: 5px 20px;
-	font-size: 14px;
-	color: #387580;
-	border-radius: 0.6em;
-	background: #FFF;
-	box-shadow: 0px 1px 1px #a2c2c3;
+    display: block;
+    line-height: 28px;
+    padding: 5px 20px;
+    font-size: 14px;
+    color: #387580;
+    border-radius: 0.6em;
+    background: #FFF;
+    box-shadow: 0px 1px 1px #a2c2c3;
 }
 .question_list a:hover { background: #f8f8f8;}
 
@@ -152,49 +152,49 @@ button {cursor: pointer; font-family:"微软雅黑";}
 .s_title { width: 333px; height: 58px; margin: 10px auto;}
 .fenshu_box {
     width: 440px;
-	margin: 80px auto;
-	background: #397580;
-	border: 2px #FFFFFF solid;
-	border-radius: 0.6em;
-	overflow: hidden;
+    margin: 80px auto;
+    background: #397580;
+    border: 2px #FFFFFF solid;
+    border-radius: 0.6em;
+    overflow: hidden;
 }
 .user_pic { width: 65px; height: 65px; border: 2px #CCCCCC solid; float: left; margin: 30px 0 0 30px;}
 .fenshu_h1 {
     line-height: 100px;
-	text-align: center;
-	color: #e4411e;
-	font-size: 30px;
-	text-shadow: 2px 0px 1px #f3eadb,
-	-2px 0px 1px #f3eadb,
-	0px 2px 1px #f3eadb,
-	0px -2px 1px #f3eadb;
+    text-align: center;
+    color: #e4411e;
+    font-size: 30px;
+    text-shadow: 2px 0px 1px #f3eadb,
+        -2px 0px 1px #f3eadb,
+        0px 2px 1px #f3eadb,
+        0px -2px 1px #f3eadb;
 }
 .fenshu_h1 span { font-size: 72px;}
 
 .fenshu_h2 { text-align: center; font-size: 24px; color: #f3eadb; margin: 30px 0;}
 .fs_input { width: 50%; margin: 30px auto; display: block; height: 32px; line-height: 32px; text-align: center;}
 .fs_btn {
-	padding: 0 20px;
-	height: 32px;
-	margin: 30px 0 30px 150px;
-	display: block;
-	line-height: 32px;
-	background: #FFF;
-	border: none;
-	box-shadow: 2px 2px 2px rgba(000,000,000,0.3);
-	border-radius: 0.6em;
-	color: #397580;
-	font-size: 16px;
+    padding: 0 20px;
+    height: 32px;
+    margin: 30px 0 30px 150px;
+    display: block;
+    line-height: 32px;
+    background: #FFF;
+    border: none;
+    box-shadow: 2px 2px 2px rgba(000,000,000,0.3);
+    border-radius: 0.6em;
+    color: #397580;
+    font-size: 16px;
 }
 
 .plan_t {
     height: 80px;
-	line-height: 80px;
-	font-size: 22px;
-	font-weight: bold;
-	color: #f3eadb;
-	background: #397580 url(/assets/time.png) no-repeat 50px center;
-	text-align: center;
+    line-height: 80px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #f3eadb;
+    background: #397580 url(/assets/time.png) no-repeat 50px center;
+    text-align: center;
 }
 .plan_box { background: #73aeb9; border-top: 2px #FFFFFF solid; height: 280px;}
 .plan_box h2 { font-size: 18px; color: #FFF; height: 50px; margin: 5px 0; line-height: 50px; text-align: center;}
@@ -202,7 +202,17 @@ button {cursor: pointer; font-family:"微软雅黑";}
 .user_data label { display: inline-block; width: 100px; text-align: right; padding-right: 10px; font-weight: bold;}
 .user_data input { width: 240px; height:32px; line-height: 32px; padding: 0 10px; font-size: 16px; color: #333;text-align:center}
 
-
-/* 提示弹出层*/
-.tishi_tab {width: 288px; height: 82px; padding:30px 10px 10px 10px; background: url(/assets/tishi_tab_bg.png) no-repeat; position: fixed; display: none;z-index: 9999;}
-.tishi_tab p  { text-align: center; line-height: 24px; font-size: 14px; font-family:"微软雅黑"; font-weight:bold; color: #ffffff;}
+.tab {
+    width: 300px;  
+    background: #B0D3D4;
+    color:#387580;
+    border: 2px #E4E3CE solid;
+    border-radius: 0.6em;
+    box-shadow: 3px 3px 6px rgba(102,102,102,0.5),-3px -3px 6px rgba(102,102,102,0.5);
+    position: absolute;
+    top: 10px; left: 10px;
+    padding: 20px;
+}
+.tab p { text-align: center; line-height: 32px; font-size: 14px;}
+.tab_btn { padding: 10px 50px; overflow: hidden; margin: 10px 0;}
+.tab_btn button { float: left; margin: 0 10px;}

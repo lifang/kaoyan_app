@@ -91,7 +91,7 @@ function local_save_start(id) {
 
 // 定时结束加载另一个单词
 function local_save(id) {
-    if(local_start_time==0){
+    if(local_start_time<=0){
         next_word(id);
     }    
     show_timer();
@@ -108,7 +108,7 @@ function show_timer(){
         }
     }
     var end_date = new Date();
-    if ((end_date - local_save_time) > 100 && (end_date - local_save_time) < 1000) {
+    if ((end_date - local_save_time) > 500 && (end_date - local_save_time) < 5000) {
         local_start_time = Math.round((local_start_time - (end_date - local_save_time)/1000)*10)/10;
     } else {
         local_start_time = Math.round((local_start_time - 0.1 - (end_date - start_date)/1000)*10)/10;
