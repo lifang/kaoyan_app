@@ -96,7 +96,6 @@ function str2arr(str){
 //将句子中的词拆分成单个按钮
 function arr_to_choice(arr){
     for(var i=0;i<arr.length;i++){
-
         document.getElementById("select").innerHTML +=
         "<button id='choice"+(i+1)+"' title=\""+arr[i]+"\" value=\""+arr[i]+"\" onclick='javascript:choose("+(i+1)+")'>"
         +arr[i]+"</button>";
@@ -106,23 +105,25 @@ function arr_to_choice(arr){
 
 //撤销
 function backspace(){
-    if(_history.length==0)return;
-    var m = _history.pop();
-    $("#choice"+m).show();
-    var current = $("#current").html().split(" ");
-    current.pop();
-    current.pop();
-    if(current.length==0){
-        $("#current").html("");
-    }else{
-        $("#current").html(""+current.join(" ")+" ");
-    }
+    $("#select button").show();
+    $("#current").html("");
+//    if(_history.length==0)return;
+//    var m = _history.pop();
+//    $("#choice"+m).show();
+//    var current = $("#current").html().split(" ");
+//    current.pop();
+//    current.pop();
+//    if(current.length==0){
+//        $("#current").html("");
+//    }else{
+//        $("#current").html(""+current.join(" ")+" ");
+//    }
 }
 
 //选词
 function choose(m){
     $("#choice"+m).hide();
-    _history.push(m);
+    //_history.push(m);
     document.getElementById("current").innerHTML += ""+$("#choice"+m).val()+" ";
 }
 
