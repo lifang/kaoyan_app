@@ -60,16 +60,16 @@ class UserPlan < ActiveRecord::Base
   # 计算各个练习需要达到的等级
   def self.target_level_report(target_score,category_id)
     category = Category::FLAG[category_id]
-    max_score = Examination::MAX_SCORE[:"#{category}"]
-    return nil unless word = calculate_target_level(target_score, max_score, Word::MAX_LEVEL[:"#{category}"])
-    return nil unless sentence = calculate_target_level(target_score, max_score, PracticeSentence::SENTENCE_MAX_LEVEL[:"#{category}"])
+    max_score = UserScoreInfo::MAX_SCORE[category]
+    return nil unless word = calculate_target_level(target_score, max_score, Word::MAX_LEVEL[category])
+    return nil unless sentence = calculate_target_level(target_score, max_score, PracticeSentence::SENTENCE_MAX_LEVEL[category])
     if category_id == (Category::TYPE[:CET4] || Category::TYPE[:CET6])
-      return nil unless listen = calculate_target_level(target_score, max_score, PracticeSentence::LISTEN_MAX_LEVEL[:"#{category}"])
-      return nil unless translate = calculate_target_level(target_score, max_score, PracticeSentence::TRANSLATE_MAX_LEVEL[:"#{category}"])
-      return nil unless dictation = calculate_target_level(target_score, max_score, PracticeSentence::DICTATION_MAX_LEVEL[:"#{category}"])
+      return nil unless listen = calculate_target_level(target_score, max_score, PracticeSentence::LISTEN_MAX_LEVEL[category])
+      return nil unless translate = calculate_target_level(target_score, max_score, PracticeSentence::TRANSLATE_MAX_LEVEL[category])
+      return nil unless dictation = calculate_target_level(target_score, max_score, PracticeSentence::DICTATION_MAX_LEVEL[category])
     end
-    return nil unless read = calculate_target_level(target_score, max_score, Tractate::READ_MAX_LEVEL[:"#{category}"])
-    return nil unless write = calculate_target_level(target_score, max_score, Tractate::WRITE_MAX_LEVEL[:"#{category}"])
+    return nil unless read = calculate_target_level(target_score, max_score, UserScoreInfo::READ_MAX_LEVEL[category])
+    return nil unless write = calculate_target_level(target_score, max_score, UserScoreInfo::WRITE_MAX_LEVEL[category])
 
     if category_id == (Category::TYPE[:CET4] || Category::TYPE[:CET6])
       return {:WORD => word, :SENTENCE => sentence, :LISTEN => listen, :READ => read, :WRITE => write, :TRANSLATE => translate, :DICTATION => dictation}
@@ -166,27 +166,28 @@ class UserPlan < ActiveRecord::Base
   #根据计划计算 预计分数
   def UserPlan.sys_provide_score_report(s_word, s_sentence, s_listen, user_plan,category_id)
     if category_id == (Category::TYPE[:CET4] || Category::TYPE[:CET6])
-      score = sys_provide_score((user_plan[:WORD] + s_word).to_f/PER_ITEMS[:WORD], Word::MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.15)
-      score += sys_provide_score((user_plan[:SENTENCE] + s_sentence).to_f/PER_ITEMS[:SENTENCE], PracticeSentence::SENTENCE_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.2)
-      score += sys_provide_score((user_plan[:LISTEN] + s_listen).to_f/PER_ITEMS[:LISTEN], PracticeSentence::LISTEN_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.15)
-      score += sys_provide_score(user_plan[:TRANSLATE].to_f/PER_ITEMS[:TRANSLATE], PracticeSentence::TRANSLATE_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.2)
-      score += sys_provide_score(user_plan[:DICTATION].to_f/PER_ITEMS[:DICTATION], PracticeSentence::DICTATION_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.1)
-      score += sys_provide_score(user_plan[:READ].to_f/PER_ITEMS[:READ], Tractate::READ_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.05)
-      score += sys_provide_score(user_plan[:WRITE].to_f/PER_ITEMS[:WRITE], Tractate::WRITE_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.1)
-      score += Examination::MAX_SCORE[:"#{Category::FLAG[category_id]}"]*0.05
+      score = sys_provide_score((user_plan[:WORD] + s_word).to_f/PER_ITEMS[:WORD], Word::MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.15)
+      score += sys_provide_score((user_plan[:SENTENCE] + s_sentence).to_f/PER_ITEMS[:SENTENCE], PracticeSentence::SENTENCE_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.2)
+      score += sys_provide_score((user_plan[:LISTEN] + s_listen).to_f/PER_ITEMS[:LISTEN], PracticeSentence::LISTEN_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.15)
+      score += sys_provide_score(user_plan[:TRANSLATE].to_f/PER_ITEMS[:TRANSLATE], PracticeSentence::TRANSLATE_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.2)
+      score += sys_provide_score(user_plan[:DICTATION].to_f/PER_ITEMS[:DICTATION], PracticeSentence::DICTATION_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.1)
+      score += sys_provide_score(user_plan[:READ].to_f/PER_ITEMS[:READ], UserScoreInfo::READ_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.05)
+      score += sys_provide_score(user_plan[:WRITE].to_f/PER_ITEMS[:WRITE], UserScoreInfo::WRITE_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.1)
+      score += Examination::MAX_SCORE[Category::FLAG[category_id]]*0.05
     else
-      score = sys_provide_score((user_plan[:WORD] + s_word).to_f/PER_ITEMS[:WORD], Word::MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.2)
-      score += sys_provide_score((user_plan[:SENTENCE] + s_sentence).to_f/PER_ITEMS[:SENTENCE], PracticeSentence::SENTENCE_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.25)
-      score += sys_provide_score(user_plan[:READ].to_f/PER_ITEMS[:READ], Tractate::READ_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.3)
-      score += sys_provide_score(user_plan[:WRITE].to_f/PER_ITEMS[:WRITE], Tractate::WRITE_MAX_LEVEL[:"#{Category::FLAG[category_id]}"], category_id, 0.15)
-      score += Examination::MAX_SCORE[:"#{Category::FLAG[category_id]}"]*0.1
+      score = sys_provide_score((user_plan[:WORD] + s_word).to_f/PER_ITEMS[:WORD], Word::MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.2)
+      score += sys_provide_score((user_plan[:SENTENCE] + s_sentence).to_f/PER_ITEMS[:SENTENCE], PracticeSentence::SENTENCE_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.25)
+      score += sys_provide_score(user_plan[:READ].to_f/PER_ITEMS[:READ], UserScoreInfo::READ_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.3)
+      score += sys_provide_score(user_plan[:WRITE].to_f/PER_ITEMS[:WRITE], UserScoreInfo::WRITE_MAX_LEVEL[Category::FLAG[category_id]], category_id, 0.15)
+      score += UserScoreInfo::MAX_SCORE[Category::FLAG[category_id]]*0.1
+      score =(score+0.5).to_i
     end
   end
 
   #根据计划计算 每一项所占的预计分数
   def UserPlan.sys_provide_score(target_level, max_level, category_id, score_precent)
     category = Category::FLAG[category_id]
-    max_score = Examination::MAX_SCORE[:"#{category}"]
+    max_score = UserScoreInfo::MAX_SCORE[category]
     y = max_level%2 == 0 ? max_level + 1 : max_level # 41
     x = (y-1)*0.5  # 20
     total_area = max_level%2 == 0 ? x*y-y/x*0.5 : x*y
@@ -202,7 +203,7 @@ class UserPlan < ActiveRecord::Base
   #根据不同科目 下给定的区间值选择最优值
   def UserPlan.package_level(category_id)
     today = Time.now.strftime("%Y-%m-%d")
-    day = (Constant::DEAD_LINE[:"#{Category::FLAG[category_id]}"].to_time - today.to_time)/86400
+    day = (UserScoreInfo::DEAD_LINE[Category::FLAG[category_id]].to_time - today.to_time)/86400
     if category_id == (Category::TYPE[:CET4] || Category::TYPE[:CET6])
       CET46_PLANS.each { |k,v|
         return v if v <= day
@@ -238,6 +239,7 @@ class UserPlan < ActiveRecord::Base
 
   #返回各个部分的时间
   def return_chapter_data(data_info)
+    p data_info[:ONE].to_f/data_info[:ALL].to_i
     first_chapter = ((data_info[:ONE].to_f/data_info[:ALL].to_i)*data_info[:DAYS]).ceil
     second_chapter = ((data_info[:TWO].to_f/data_info[:ALL].to_i)*data_info[:DAYS]).ceil
     third_chapter = data_info[:DAYS] - first_chapter - second_chapter

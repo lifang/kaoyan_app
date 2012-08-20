@@ -1,10 +1,19 @@
+<%= javascript_include_tag "preambles" %>
+<%category=params[:category_id].nil? ? 4 : params[:category_id].to_i%>
 <h1 class="s_title"><img src="/assets/s_title.png" /></h1>
 <div class="fenshu_box">
   <div class="user_pic"><img src="/assets/user_pic.jpg" /></div>
-  <h1 class="fenshu_h1">当前估分：<span>73</span></h1>
+  <h1 class="fenshu_h1">当前估分：<span><%= @user_score.start_score %></span></h1>
   <div class="clear"></div>
+  <% max_score=category!=4? UserScoreInfo::MAX_SCORE[:CET] : UserScoreInfo::MAX_SCORE[:GRADUATE] %>
+  <input type="hidden" id="max_score" value="<%= max_score %>" />
+<%# if @user_score.start_score==max_score %>
+<%#*<h2 class="fenshu_h2">您太强了，可能不需要我们的复习计划</h2>%>
+<%#*<h2 class="fenshu_h2">到<a href="http://www.gankao.co">官网</a>看看</h2>%>
+<%# else %>
   <h2 class="fenshu_h2">设定目标成绩</h2>
-  <input name="" type="text" class="fs_input" />
-  <button class="fs_btn">生成复习方案</button>
+  <input name="target_score" id="target_score" type="text" class="fs_input" />
+  <input type="hidden" id="category_id" value="<%= category %>" />
+  <button class="fs_btn" onclick="create_plan()">生成复习方案</button>
+<%# end  %>
 </div>
-

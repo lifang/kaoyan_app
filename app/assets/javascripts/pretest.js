@@ -1,7 +1,7 @@
 //提交答案
 function check_answer(answer_id){
     if($(".hover_on").length==0){
-        alert("请选择答案");
+        tishi_alert("请选择答案");
         return false;
     }
     next_word(answer_id);
@@ -14,11 +14,12 @@ function send_record(level){
         type: "POST",
         url: "/pretests/level_record",
         data:{
-            fact_level : level
+            fact_level : level,
+            category_id : category_id
         },
         dataType: "json",
         success : function(data) {
-            alert("欢迎进入短语测试阶段");
+            tishi_alert("欢迎进入短语测试阶段");
             window.location.href="/preambles/sentence?category_id="+category_id
         }
     })
@@ -134,7 +135,7 @@ function listen_save(id) {
 //查看听力答案
 function check_listen(id){
     if($(".hover_on").length==0){
-        alert("请选择答案");
+        tishi_alert("请选择答案");
         return false;
     }
     next_listen(id);
@@ -179,12 +180,12 @@ function send_listen(level){
         url: "/pretests/level_listen",
         data:{
             fact_level : level,
-            category_id : category
+            category_id : category_id
         },
         dataType: "json",
         success : function(data) {
-            alert("前测结束，输入考研目标分数");
-            window.location.href="/preambles/test_result"
+            tishi_alert("前测结束，输入考研目标分数");
+            window.location.href="/preambles/test_result?category_id="+category_id
         }
     })
 }
@@ -196,6 +197,9 @@ function revoke_exam(){
             type: "POST",
             url: "/pretests/revoke_exam",
             dataType: "json",
+            data:{
+                category_id : category_id
+            },
             success : function(data) {
                 window.location.href="/"
             }
