@@ -4,7 +4,7 @@ KaoyanApp::Application.routes.draw do
 
   resources :pretests do
     collection do
-      get :test_words,:listen
+      get :test_words,:listen,:baidu_connect
       post :other_words,:level_record,:other_listens,:level_listen,:revoke_exam
     end
   end
