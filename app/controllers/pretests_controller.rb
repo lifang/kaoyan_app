@@ -11,7 +11,7 @@ class PretestsController < ApplicationController
       UserScoreInfo.create({:category_id=>category,:user_id=>cookies[:user_id]})
     end
     @max_level=Word::MAX_LEVEL[Category::FLAG[category]]
-    @level=((@max_level+1).to_f/2).round
+    @level=((@max_level).to_f/2).round
     @words=Word.get_items_by_level(@level, params[:category_id], 4)
   end
 
