@@ -15,18 +15,18 @@ function generate_flash_div(style) {
     var z_layer_width = jQuery(style).width();
     jQuery(style).css('top',(win_height-z_layer_height)/2 + scolltop);
     jQuery(style).css('left',(win_width-z_layer_width)/2);
-    jQuery(style).css('display','block');
+    jQuery(style).css('display','');
 }
 
 //提示框弹出层
 function show_flash_div() {
-    $('.tab').stop(null,true);
-    generate_flash_div(".tab");
+    $('#flash_notice').stop(null,true);
+    generate_flash_div("#flash_notice");
     setTimeout(function(){
-        jQuery('.tab').fadeTo("slow",0);
+        jQuery('#flash_notice').fadeTo("slow",0);
     }, 2500);
     setTimeout(function(){
-        $('.tab').remove();
+        $('#flash_notice').remove();
     }, 3000);
 }
 

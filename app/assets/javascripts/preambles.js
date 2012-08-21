@@ -160,7 +160,8 @@ function get_next_sentence() {
 }
 
 function revoke_exam(){
-    if(confirm("结束测试将取消本次的成绩")){
+    generate_flash_div(".tab");
+    $(".tab #confirm").bind("click",function(){
         $.ajax({
             async:true,
             type: "POST",
@@ -173,7 +174,7 @@ function revoke_exam(){
                 window.location.href="/"
             }
         })
-    }
+    })
 }
 
 function create_plan(){

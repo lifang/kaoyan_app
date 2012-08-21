@@ -19,7 +19,6 @@ function send_record(level){
         },
         dataType: "json",
         success : function(data) {
-            tishi_alert("欢迎进入短语测试阶段");
             window.location.href="/preambles/sentence?category_id="+category_id
         }
     })
@@ -164,9 +163,7 @@ function next_listen(answer_id){
                 level : level,
                 category_id : category_id
             },
-            dataType: "script",
-            success : function(data) {
-            }
+            dataType: "script"
         })
     }
 }
@@ -184,14 +181,14 @@ function send_listen(level){
         },
         dataType: "json",
         success : function(data) {
-            tishi_alert("前测结束，输入考研目标分数");
             window.location.href="/preambles/test_result?category_id="+category_id
         }
     })
 }
 
 function revoke_exam(){
-    if(confirm("结束测试将取消本次的成绩")){
+    generate_flash_div(".tab");
+    $(".tab #confirm").bind("click",function(){
         $.ajax({
             async:true,
             type: "POST",
@@ -204,5 +201,5 @@ function revoke_exam(){
                 window.location.href="/"
             }
         })
-    }
+    })
 }
