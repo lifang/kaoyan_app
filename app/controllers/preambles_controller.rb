@@ -89,7 +89,11 @@ class PreamblesController < ApplicationController
     infos.merge!(:name=>params[:p_name]) unless params[:p_name]==""
     infos.merge!(:remarks=>"#{user.remarks} qq:#{params[:p_qq]}") unless params[:p_qq]==""
     user.update_attributes(infos)
-    redirect_to "/preambles/follows"
+    redirect_to "/preambles/follows?category_id=#{params[:category_id]}"
   end
 
+  def follows
+    @user=User.find(cookies[:user_id])
+  end
+  
 end
