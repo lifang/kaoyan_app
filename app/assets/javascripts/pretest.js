@@ -24,7 +24,7 @@ function next_word(answer_id){
     }
     select_level(answer_id);
     if (level==max_level){
-        setCookie(flag[category_id],[min_level,0,0,0])  //单词测试结束，增加cookie
+        setCookie(flag[category_id],[min_level,0,0,0],86400000,"/")  //单词测试结束，增加cookie
         window.location.href="/preambles/sentence?category_id="+category_id
     }else{   
         $.ajax({
