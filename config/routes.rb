@@ -4,10 +4,14 @@ KaoyanApp::Application.routes.draw do
 
   resources :pretests do
     collection do
-      get :test_words,:listen,:baidu_connect,:respond_baidu
+      get :test_words,:listen
       post :other_words,:level_record,:other_listens,:level_listen,:revoke_exam
     end
   end
+
+  match "/cet_four" => "pretests#cet_four"
+  match "/cet_six" => "pretests#cet_six"
+  match "/graduate" => "pretests#graduate"
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

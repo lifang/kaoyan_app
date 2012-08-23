@@ -5,7 +5,7 @@
 <div><a  href='/music.mp3' id="player"> </a></div>
 <script type="text/javascript">
   local_save_start('<%=word_con[0].id  %>');
-  flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.14.swf", {
+  flowplayer("player", "/assets/flowplayer/flowplayer.swf", {
     clip: {
       url: '<%= word_con[0].enunciate_url %>'
     }

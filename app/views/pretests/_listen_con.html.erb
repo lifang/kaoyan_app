@@ -18,7 +18,7 @@
   var en_mean=$("#correct_answer").val();
   local_start_time=en_mean.split(" ").length<10 ? 15 : parseInt(en_mean.split(" ").length*1.5+0.5)
   listen_start('<%= listen_con.id %>');
-  flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.14.swf", {
+  flowplayer("player", "/assets/flowplayer/flowplayer.swf", {
     clip: {
       url: '<%= listen_con.enunciate_url %>'
     }
