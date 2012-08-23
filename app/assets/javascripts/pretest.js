@@ -1,3 +1,8 @@
+flag = {
+    2 : "CET4",
+    3  : "CET6",
+    4 : "GRADUATE"
+}
 //提交答案
 function check_answer(answer_id){
     if($(".hover_on").length==0){
@@ -7,22 +12,6 @@ function check_answer(answer_id){
     next_word(answer_id);
 }
 
-//单词测试结束，记录level
-function send_record(level){
-    $.ajax({
-        async:true,
-        type: "POST",
-        url: "/pretests/level_record",
-        data:{
-            fact_level : level,
-            category_id : category_id
-        },
-        dataType: "json",
-        success : function(data) {
-            window.location.href="/preambles/sentence?category_id="+category_id
-        }
-    })
-}
 //判断测试答案，并加载下一个单词
 function next_word(answer_id){
     window.clearInterval(local_timer);
@@ -35,7 +24,8 @@ function next_word(answer_id){
     }
     select_level(answer_id);
     if (level==max_level){
-        send_record(min_level);
+        setCookie(flag[category_id],[min_level,0,0,0])  //单词测试结束，增加cookie
+        window.location.href="/preambles/sentence?category_id="+category_id
     }else{   
         $.ajax({
             async:true,
@@ -46,9 +36,7 @@ function next_word(answer_id){
                 level : level,
                 category_id : category_id
             },
-            dataType: "script",
-            success : function(data) {
-            }
+            dataType: "script"
         })
     }
 }

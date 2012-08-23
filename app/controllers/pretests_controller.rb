@@ -5,15 +5,11 @@ class PretestsController < ApplicationController
   
   def test_words
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    user_score=UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id])
-    if user_score.nil?
-      UserScoreInfo.create({:category_id=>category,:user_id=>cookies[:user_id]})
-    end
     @max_level=Word::MAX_LEVEL[Category::FLAG[category]]
     @level=((@max_level).to_f/2).round
     @words=Word.get_items_by_level(@level, params[:category_id], 4)
   end
-
+ 
 
   def other_words
     if params[:limit_ids]==""
@@ -26,16 +22,6 @@ class PretestsController < ApplicationController
     end
   end
 
-
-  def level_record
-    category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id]).update_attributes(:all_start_level=>"#{params[:fact_level]},0,0")
-    respond_to do |format|
-      format.json {
-        render :json=>"1"
-      }
-    end
-  end
 
   def listen
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
