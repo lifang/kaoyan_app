@@ -8,5 +8,9 @@
   local_start_time = _ans_arr.length * 2;
   local_save_start();
 <% else %>
-  window.location.href="/pretests/listen?category_id=<%= @category_id %>";
+  <% unless @category_id == Category::TYPE[:GRADUATE] %>
+    window.location.href="/pretests/listen?category_id=<%= @category_id %>";
+  <% else %>
+    window.location.href="/preambles/test_result?category_id=<%= @category_id %>";
+  <% end %>
 <% end %>

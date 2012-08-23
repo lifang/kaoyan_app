@@ -13,30 +13,21 @@ class UserScoreInfo < ActiveRecord::Base
     :GRADUATE => '2012-10-7'
   }
 
-  #更新句子的等级
-  def self.update_sentence_level(category_id, user_id, final_level, index)
-    info = UserScoreInfo.find_or_create_by_category_id_and_user_id(category_id, user_id)
-    levels = (info.all_start_level.nil? or info.all_start_level.empty?) ? [0, 0, 0] : info.all_start_level.split(",")
-    levels[index] = final_level
-    info.all_start_level = levels.join(",")
-    info.get_start_score(levels, index)
-    info.save
-  end
-
   #更新初始成绩
-  def get_start_score(levels, index)
-    if self.category_id == Category::TYPE[:GRADUATE] and index == LEVEL_INDEX[:SENTENCE]
-      self.start_score = ((levels[0].to_f/Word::MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:WORD]
+  def self.get_start_score(levels, index, category_id)
+    if category_id == Category::TYPE[:GRADUATE] and index == LEVEL_INDEX[:SENTENCE]
+      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:WORD]
         + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:SENTENCE]) * MAX_SCORE[:GRADUATE]).round
-    elsif self.category_id == Category::TYPE[:CET4] and index == LEVEL_INDEX[:LINSTEN]
-      self.start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET4] * CET_PERCENT[:WORD]
+    elsif category_id == Category::TYPE[:CET4] and index == LEVEL_INDEX[:LINSTEN]
+      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET4] * CET_PERCENT[:WORD]
         + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET4] * CET_PERCENT[:SENTENCE]
         + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET4] * CET_PERCENT[:LINSTEN]) * MAX_SCORE[:CET]).round
-    elsif self.category_id == Category::TYPE[:CET6] and index == LEVEL_INDEX[:LINSTEN]
-      self.start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET6] * CET_PERCENT[:WORD]
+    elsif category_id == Category::TYPE[:CET6] and index == LEVEL_INDEX[:LINSTEN]
+      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET6] * CET_PERCENT[:WORD]
         + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET6] * CET_PERCENT[:SENTENCE]
         + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET6] * CET_PERCENT[:LINSTEN]) * MAX_SCORE[:CET]).round
     end
+    return start_score
   end
 
   #取到默认开始的词库、句子跟听力

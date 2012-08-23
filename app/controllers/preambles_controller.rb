@@ -2,7 +2,10 @@
 class PreamblesController < ApplicationController
 
   def sentence
+    puts "-----------------------"    
     @category_id = params[:category_id].to_i
+    puts cookies["#{Category::FLAG[@category_id]}"]
+    
     @last_end_level = PracticeSentence.max_level(@category_id)
     @last_start_level = 2
     @user_level = ((@last_end_level + @last_start_level).to_f/2).round
@@ -43,7 +46,7 @@ class PreamblesController < ApplicationController
         :order => "rand()")
       @sentence_ids << @sentence.id
     else
-      UserScoreInfo.update_sentence_level(@category_id, cookies[:user_id], @user_level, UserScoreInfo::LEVEL_INDEX[:SENTENCE])
+      update_sentence_level(@category_id, @user_level, UserScoreInfo::LEVEL_INDEX[:SENTENCE])      
     end
     respond_to do |format|
       format.js
