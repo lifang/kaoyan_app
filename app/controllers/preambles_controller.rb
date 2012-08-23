@@ -5,6 +5,7 @@ class PreamblesController < ApplicationController
     puts "-----------------------"    
     @category_id = params[:category_id].to_i
     puts cookies["#{Category::FLAG[@category_id]}"]
+    puts "#{Category::FLAG[@category_id]}"
     
     @last_end_level = PracticeSentence.max_level(@category_id)
     @last_start_level = 2
