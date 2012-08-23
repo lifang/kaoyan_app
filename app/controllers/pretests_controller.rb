@@ -89,7 +89,7 @@ class PretestsController < ApplicationController
         cookies[:user_id]=@user.id
         cookies[:user_name]=@user.username
         cookies.delete(:user_role)
-        user_order(Category::TYPE[:GRADUATE], cookies[:user_id].to_i)
+        #user_order(Category::TYPE[:GRADUATE], cookies[:user_id].to_i)
         redirect_to "/?category_id=#{Category::TYPE[:GRADUATE]}"
         return false
       end
@@ -107,6 +107,8 @@ class PretestsController < ApplicationController
     if @user.nil?
       @user=User.create(:code_id=>ret_user["uid"],:code_type=>'baidu',:name=>ret_user["uname"],
         :username=>ret_user["uname"], :access_token=>access_token, :end_time=>Time.now+access_token["expires_in"].to_i.seconds, :from => User::U_FROM[:APP ])
+      Sun.create(:category_id => Category::TYPE[:GRADUATE], :types => Sun::TYPES[:FIRSTLOGIN],
+        :user_id => @user.id, :num => Sun::TYPE_NUM[:FIRSTLOGIN])
     else
       ActionLog.login_log(@user.id)
       if @user.access_token.nil? || @user.access_token=="" || @user.access_token!=access_token
@@ -116,7 +118,7 @@ class PretestsController < ApplicationController
     cookies[:user_id]=@user.id
     cookies[:user_name]=@user.username
     cookies.delete(:user_role)
-    user_order(Category::TYPE[:GRADUATE], cookies[:user_id].to_i)
+    #user_order(Category::TYPE[:GRADUATE], cookies[:user_id].to_i)
     render :inline=>"<script type='text/javascript'>window.parent.location.href='/?category=#{Category::TYPE[:GRADUATE]}'</script>"
   end
   
