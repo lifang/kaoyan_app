@@ -2,11 +2,7 @@
 class PreamblesController < ApplicationController
 
   def sentence
-    puts "-----------------------"    
     @category_id = params[:category_id].to_i
-    puts cookies["#{Category::FLAG[@category_id]}"]
-    puts "#{Category::FLAG[@category_id]}"
-    
     @last_end_level = PracticeSentence.max_level(@category_id)
     @last_start_level = 1
     @user_level = ((@last_end_level + @last_start_level).to_f/2).round
