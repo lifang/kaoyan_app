@@ -58,7 +58,7 @@ button {cursor: pointer; font-family:"微软雅黑";}
 
 .words_func { padding: 5px 10px; position: relative; overflow: hidden;}
 .words_func h1, .words_func h2 { color: #387580; height: 36px; line-height: 36px;}
-.words_func h1 { font-size: 24px;}
+.words_func h1 { font-size: 24px; height: 36px;}
 .words_func h2 { font-size: 16px;}
 .words_func .fyin { color: #FFF; font-size: 14px; padding: 0 10px;}
 

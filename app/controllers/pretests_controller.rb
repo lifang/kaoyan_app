@@ -6,7 +6,7 @@ class PretestsController < ApplicationController
   def test_words
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
     @max_level=Word::MAX_LEVEL[Category::FLAG[category]]
-    @level=((@max_level).to_f/2).round
+    @level=((@max_level.to_f + 1)/2).round
     @words=Word.get_items_by_level(@level, params[:category_id], 4)
   end
  
@@ -24,7 +24,10 @@ class PretestsController < ApplicationController
 
 
   def listen
+    puts "================================="
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
+    puts cookies["#{Category::FLAG[category]}"]
+    puts "#{Category::FLAG[category]}"
     @end_level=PracticeSentence::SENTENCE_MAX_LEVEL[Category::FLAG[category]]
     @user_level=(@end_level + 1)/2
     @listen = PracticeSentence.find(:first, :conditions => ["level = ? and types= ? and category_id=?", @user_level,PracticeSentence::TYPES[:LINSTEN],category], :order => "rand()")

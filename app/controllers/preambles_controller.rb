@@ -8,7 +8,7 @@ class PreamblesController < ApplicationController
     puts "#{Category::FLAG[@category_id]}"
     
     @last_end_level = PracticeSentence.max_level(@category_id)
-    @last_start_level = 2
+    @last_start_level = 1
     @user_level = ((@last_end_level + @last_start_level).to_f/2).round
     @sentence = PracticeSentence.find(:first, :conditions => ["level = ?", @user_level], :order => "rand()")
     @sentence_ids = [@sentence.id]
