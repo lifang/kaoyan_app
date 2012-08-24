@@ -54,8 +54,7 @@ function local_save() {
             $(".time").html("00:" + local_start_time.toString());
         } else {
             $(".time").html("00:0" + local_start_time.toString());
-        }
-        
+        }        
     }
     var end_date = new Date();
     if ((end_date - local_save_time) > 500 && (end_date - local_save_time) < 5000) {
