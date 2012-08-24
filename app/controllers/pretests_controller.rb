@@ -24,10 +24,7 @@ class PretestsController < ApplicationController
 
 
   def listen
-    puts "================================="
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    puts cookies["#{Category::FLAG[category]}"]
-    puts "#{Category::FLAG[category]}"
     @end_level=PracticeSentence::SENTENCE_MAX_LEVEL[Category::FLAG[category]]
     @user_level=(@end_level + 1)/2
     @listen = PracticeSentence.find(:first, :conditions => ["level = ? and types= ? and category_id=?", @user_level,PracticeSentence::TYPES[:LINSTEN],category], :order => "rand()")
@@ -49,7 +46,8 @@ class PretestsController < ApplicationController
 
   def level_listen
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    UserScoreInfo.update_sentence_level(category, cookies[:user_id], params[:fact_level].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
+    update_sentence_level(category, params[:fact_level].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
+    cookies
     respond_to do |format|
       format.json {
         render :json=>"1"
@@ -80,6 +78,37 @@ class PretestsController < ApplicationController
   def graduate
     @category = Category::TYPE[:GRADUATE]
     render "index"
+  end
+
+
+  def judge_cookie
+    category=params[:category_id].to_i
+    info=cookies[Category::FLAG[category]].split(",")
+    if info
+      if info[0].to_i==0
+        redirect_to "/pretests/test_words?category_id=#{category}"
+      end
+      if info[0].to_i!=0 and info[1].to_i==0
+        redirect_to "/preambles/sentence?category_id=#{category}"
+      end
+      if info[0].to_i!=0 and info[1].to_i!=0 and info[2].to_i==0
+        if category!=Category::TYPE[:GRADUATE]       
+          redirect_to "/pretests/listen?category_id=#{category}"
+        end
+      end
+      if info[0].to_i!=0 and info[1].to_i!=0
+        if info[3].to_i==0
+          if category==Category::TYPE[:GRADUATE]
+            update_sentence_level(category, info[1].to_i, UserScoreInfo::LEVEL_INDEX[:SENTENCE])
+          else
+            update_sentence_level(category, info[2].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
+          end
+        end
+        redirect_to "/preambles/test_result?category_id=#{category}"
+      end
+    else
+      redirect_to "/pretests/test_words?category_id=#{category}"
+    end
   end
   
 end

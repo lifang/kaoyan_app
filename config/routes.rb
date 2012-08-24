@@ -4,7 +4,7 @@ KaoyanApp::Application.routes.draw do
 
   resources :pretests do
     collection do
-      get :test_words,:listen
+      get :test_words,:listen,:judge_cookie
       post :other_words,:level_record,:other_listens,:level_listen,:revoke_exam
     end
   end
@@ -24,7 +24,7 @@ KaoyanApp::Application.routes.draw do
   resources :preambles do
     collection do
       get :sentence,:test_result,:follows
-      post :next_sentence,:create_plan,:init_plan,:update_user
+      post :next_sentence,:create_plan,:init_plan,:update_user,:jugde_url
     end
   end
 

@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-LOGIN_URL="http://www.gankao.co"
+  REDIRECT_URL="http://localhost:3001/plans/end_result"
 
   #更新句子的等级
   def update_sentence_level(category_id, final_level, index)
@@ -9,7 +9,7 @@ LOGIN_URL="http://www.gankao.co"
     levels[index] = final_level
     levels[-1] = UserScoreInfo.get_start_score(levels, index, category_id)
     cookies["#{Category::FLAG[category_id]}"] = {:value => "#{levels.join(",")}", :path => "/",
-      :expires => 1.minute.ago, :secure  => false}
+      :expires => 1.hour, :secure  => false}
   end
   
 end

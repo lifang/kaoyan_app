@@ -214,3 +214,24 @@ function update_info(){
     }
     $("#p_infos").submit();
 }
+
+
+function judge_url(category_id){
+    $.ajax({
+        async:true,
+        type: "POST",
+        url: "/preambles/jugde_url",
+        dataType: "json",
+        data:{
+            category_id : category_id
+        },
+        success : function(data) {
+            if (data.redir){
+                window.open(data.url,"_blank",'height=768px,width=1024px,left=100px,top=10px')
+            }else{
+                window.location.href=data.url
+            }
+            
+        }
+    })
+}

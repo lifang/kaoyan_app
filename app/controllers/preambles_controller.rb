@@ -6,7 +6,6 @@ class PreamblesController < ApplicationController
     @category_id = params[:category_id].to_i
     puts cookies["#{Category::FLAG[@category_id]}"]
     puts "#{Category::FLAG[@category_id]}"
-    
     @last_end_level = PracticeSentence.max_level(@category_id)
     @last_start_level = 1
     @user_level = ((@last_end_level + @last_start_level).to_f/2).round
@@ -55,9 +54,52 @@ class PreamblesController < ApplicationController
   end
 
   def test_result
-    category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    @user_score=UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id])
+    @category=params[:category_id].nil? ? 4 : params[:category_id].to_i
+    @scores=cookies["#{Category::FLAG[@category]}"]
+    redirect_to "/pretests/judge_cookie?category_id=#{@category}" if @scores.nil?
   end
+
+  def jugde_url
+    category=params[:category_id].to_i
+    infos=cookies[Category::FLAG[category]]
+    url=REDIRECT_URL+"?category=#{category}"
+    is_redirect=true
+    if infos
+      info=infos.split(",")
+      if info[0].to_i==0
+        is_redirect=false
+        url= "/pretests/test_words?category_id=#{category}"
+      end
+      if info[0].to_i!=0 and info[1].to_i==0
+        is_redirect=false
+        url= "/preambles/sentence?category_id=#{category}"
+      end
+      if info[0].to_i!=0 and info[1].to_i!=0 and info[2].to_i==0        
+        if category!=Category::TYPE[:GRADUATE]
+          is_redirect=false
+          url="/pretests/listen?category_id=#{category}"
+        end
+      end
+      if info[0].to_i!=0 and info[1].to_i!=0  and info[3].to_i==0
+        if category==Category::TYPE[:GRADUATE]
+          update_sentence_level(category, info[1].to_i, UserScoreInfo::LEVEL_INDEX[:SENTENCE])
+        else
+          update_sentence_level(category, info[2].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
+        end
+      end
+    else
+      is_redirect=false
+      url="/pretests/test_words?category_id=#{category}"
+    end
+    respond_to do |format|
+      format.json {
+        render :json=>{:url=>url,:redir=>is_redirect}
+      }
+    end
+  end
+
+
+
 
   def create_plan
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
