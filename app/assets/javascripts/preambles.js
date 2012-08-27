@@ -176,46 +176,12 @@ function revoke_exam(){
     })
 }
 
-function create_plan(){
-    var category=$("#category_id").val();
-    var score=$("#target_score").val();
-    var max_score=$("#max_score").val();
-    if (score==""||score.length==0){
-        tishi_alert("请输入您的期望分数");
-        return false;
-    }
-    if (parseInt(score)>parseInt(max_score)){
-        tishi_alert("对不起，我们只能承诺您的最好成绩是："+max_score+"分");
-        return false;
-    }
-    $.ajax({
-        async:true,
-        type: "POST",
-        url: "/preambles/create_plan.js",
-        dataType: "script",
-        data:{
-            category_id : category,
-            target_score : score
-        }
-    })
-}
-
-function update_info(){
-    var email=$("#p_email").val();
-    var myReg =new RegExp(/^\w+([-+.])*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
-    if (email==""||email.length==0){
-        tishi_alert("请输入邮箱");
-        return false;
-    }
-    if ( !myReg.test(email)) {
-        tishi_alert("邮箱格式不正确，请核实！")
-        return false;
-    }
-    $("#p_infos").submit();
-}
 
 
-function judge_url(category_id){
+
+
+
+function judge_url(category_id,cookie_name){
     $.ajax({
         async:true,
         type: "POST",
