@@ -83,7 +83,7 @@ class PretestsController < ApplicationController
 
   def judge_cookie
     category=params[:category_id].to_i
-    info=cookies[Category::FLAG[category]].split(",")
+    info=cookies[Category::FLAG[category]].split(",") if cookies[Category::FLAG[category]]
     if info
       if info[0].to_i==0
         redirect_to "/pretests/test_words?category_id=#{category}"
