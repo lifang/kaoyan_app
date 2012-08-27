@@ -1,8 +1,0 @@
-<h1 class="s_title"><img src="/assets/s_title.png" /></h1>
-<div class="fenshu_box">
-  <div class="plan_t">复习计划生成完毕！</div>
-  <div class="plan_box">
-    <h2 style="margin-top: 40px;">恭喜,你的复习计划已经生成！</h2>
-    <div style="margin-top: 40px;"><button class="f_btn" onclick="javascript:window.open('<%= ApplicationHelper::LOGIN_URL %>/welcome/renren?category=<%= params[:category_id] %>&user_id=<%= cookies[:user_id] %>&code_id=<%=@user.code_id %>')">登录赶考网，开始复习吧</button></div>
-  </div>
-</div>
