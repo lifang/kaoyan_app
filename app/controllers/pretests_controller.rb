@@ -47,7 +47,6 @@ class PretestsController < ApplicationController
   def level_listen
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
     update_sentence_level(category, params[:fact_level].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
-    cookies
     respond_to do |format|
       format.json {
         render :json=>"1"
@@ -103,22 +102,15 @@ class PretestsController < ApplicationController
       info=infos.split(",")
       if info[0].to_i==0
         redirect_to "/pretests/test_words?category_id=#{category}"
-      end
-      if info[0].to_i!=0 and info[1].to_i==0
+      elsif info[1].to_i==0
         redirect_to "/preambles/sentence?category_id=#{category}"
-      end
-      if info[0].to_i!=0 and info[1].to_i!=0 and info[2].to_i==0
-        if category!=Category::TYPE[:GRADUATE]       
-          redirect_to "/pretests/listen?category_id=#{category}"
-        end
-      end
-      if info[0].to_i!=0 and info[1].to_i!=0
-        if info[3].to_i==0
-          if category==Category::TYPE[:GRADUATE]
-            update_sentence_level(category, info[1].to_i, UserScoreInfo::LEVEL_INDEX[:SENTENCE])
-          else
-            update_sentence_level(category, info[2].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
-          end
+      elsif info[2].to_i==0 and category!=Category::TYPE[:GRADUATE]
+        redirect_to "/pretests/listen?category_id=#{category}"
+      elsif info[3].to_i==0
+        if category==Category::TYPE[:GRADUATE]
+          update_sentence_level(category, info[1].to_i, UserScoreInfo::LEVEL_INDEX[:SENTENCE])
+        else
+          update_sentence_level(category, info[2].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
         end
         redirect_to "/preambles/test_result?category_id=#{category}"
       end
