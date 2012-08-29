@@ -24,7 +24,7 @@ function setCookie(name, value) {
 //删除Cookie
 function delCookie(name) {
 	var exp = new Date();
-	exp.setTime (exp.getTime() - 1);
+	exp.setTime (exp.getTime() - 2);
 	var cval = getCookie (name);
 	document.cookie = name + "=" + cval + "; expires="+ exp.toGMTString();
 }

@@ -181,7 +181,7 @@ function revoke_exam(){
 
 
 
-function judge_url(category_id,cookie_name){
+function judge_url(category_id){
     $.ajax({
         async:true,
         type: "POST",
@@ -191,12 +191,11 @@ function judge_url(category_id,cookie_name){
             category_id : category_id
         },
         success : function(data) {
-            if (data.redir){
+            if (data.redir && !getCookie("iframe")){
                 window.open(data.url,"_blank",'height=768px,width=1024px,left=100px,top=10px')
             }else{
-                window.location.href=data.url
-            }
-            
+                window.location.href=data.url;
+            }  
         }
     })
 }

@@ -67,16 +67,31 @@ class PretestsController < ApplicationController
 
   def cet_four
     @category = Category::TYPE[:CET4]
+    unless params[:iframed].nil?
+      cookies[:iframe]=params[:iframed]
+    else
+      cookies[:iframe]=nil
+    end
     render "index"
   end
 
   def cet_six
     @category = Category::TYPE[:CET6]
+    unless params[:iframed].nil?
+      cookies[:iframe]=params[:iframed]
+    else
+      cookies[:iframe]=nil
+    end
     render "index"
   end
 
   def graduate
     @category = Category::TYPE[:GRADUATE]
+    unless params[:iframed].nil?
+      cookies[:iframe]=params[:iframed]
+    else
+      cookies[:iframe]=nil
+    end
     render "index"
   end
 
