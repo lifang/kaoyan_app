@@ -66,31 +66,16 @@ class PretestsController < ApplicationController
 
   def cet_four
     @category = Category::TYPE[:CET4]
-    unless params[:iframed].nil?
-      cookies[:iframe]=params[:iframed]
-    else
-      cookies[:iframe]=nil
-    end
     render "index"
   end
 
   def cet_six
     @category = Category::TYPE[:CET6]
-    unless params[:iframed].nil?
-      cookies[:iframe]=params[:iframed]
-    else
-      cookies[:iframe]=nil
-    end
     render "index"
   end
 
   def graduate
     @category = Category::TYPE[:GRADUATE]
-    unless params[:iframed].nil?
-      cookies[:iframe]=params[:iframed]
-    else
-      cookies[:iframe]=nil
-    end
     render "index"
   end
 
@@ -112,6 +97,8 @@ class PretestsController < ApplicationController
         else
           update_sentence_level(category, info[2].to_i, UserScoreInfo::LEVEL_INDEX[:LINSTEN])
         end
+        redirect_to "/preambles/test_result?category_id=#{category}"
+      else
         redirect_to "/preambles/test_result?category_id=#{category}"
       end
     else

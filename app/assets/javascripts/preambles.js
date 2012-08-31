@@ -191,7 +191,7 @@ function judge_url(category_id){
             category_id : category_id
         },
         success : function(data) {
-            if (data.redir && !getCookie("iframe")){
+            if (data.redir){
                 window.open(data.url,"_blank",'height=768px,width=1024px,left=100px,top=10px')
             }else{
                 window.location.href=data.url;
