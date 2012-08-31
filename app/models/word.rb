@@ -9,10 +9,10 @@ class Word < ActiveRecord::Base
   MAX_LEVEL = {:CET4 => 30, :CET6 => 60, :GRADUATE => 10}  #:GRADUATE => 70
 
   #根据 等级、类型 随机抽取N条单词
-  def Word.get_items_by_level(level, category, limit,limit_ids=nil)
+  def Word.get_items_by_level(level, limit, limit_ids=nil)
     sql = "select t.* from words t where "
     sql += " t.id not in (#{limit_ids}) and "  unless limit_ids.nil?
-    sql += "t.category_id = ? and t.level = ? order by rand() limit ?"
-    return Word.find_by_sql([sql, category, level, limit])
+    sql += " t.level = ? order by rand() limit ?"
+    return Word.find_by_sql([sql, level, limit])
   end
 end

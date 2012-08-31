@@ -5,12 +5,12 @@
   //单词测试
   var level= <%= @level %>;
   var min_level=1;
-  var max_level=<%=@max_level %>
+  var max_level=<%=@max_level %>;
   var total_step=0;
-  var success_times=0
-  var error_times=0
-  var test_ids=""
-  var category_id=<%= category %>;
+  var success_times=0;
+  var error_times=0;
+  var test_ids="";
+  var category_id=<%= category.to_i %>;
   //定时器的初始参数
   var local_start_time = null;
   var local_timer = null;

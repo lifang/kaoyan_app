@@ -63,7 +63,7 @@ KaoyanApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'pretests#index'
+  root :to => 'pretests#graduate'
 
   # See how all your routes lay out with "rake routes"
 
