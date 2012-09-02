@@ -1,4 +1,12 @@
-<h1 class="title"><img src="/assets/title.png" /></h1>
+<h1 class="title">
+  <% if @category == Category::TYPE[:CET4] %>
+    <img src="/assets/3.png" />
+  <% elsif @category == Category::TYPE[:CET6] %>
+    <img src="/assets/4.png" />
+  <% else %>
+    <img src="/assets/title.png" />
+  <% end %>
+</h1>
 <h1 class="title_h">只需三步就可以免费得到一份只针对你的复习方案：</h1>
 <ul class="f_ul">
   <li>① 测试你的当前水平；</li>

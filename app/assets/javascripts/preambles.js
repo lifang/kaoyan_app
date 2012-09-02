@@ -34,7 +34,8 @@ function local_save_start() {
 function local_save() {
     var start_date = new Date();
     if (local_start_time <= 0) {
-        if (parseInt(local_start_time) == parseFloat(local_start_time)) {            
+        if (parseInt(local_start_time) == parseFloat(local_start_time)) {
+            $(".time").html("00:00");
             if ($("#read").length > 0) {
                 $('#read').fadeTo("slow", 0, function(){
                     $(this).remove();
@@ -192,7 +193,7 @@ function judge_url(category_id){
         },
         success : function(data) {
             if (data.redir){
-                window.open(data.url,"_blank",'height=768px,width=1024px,left=100px,top=10px')
+                window.open(data.url+"&info="+data.infos,"_blank",'height=768px,width=1024px,left=100px,top=10px')
             }else{
                 window.location.href=data.url;
             }  

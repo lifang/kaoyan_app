@@ -91,7 +91,7 @@ class PreamblesController < ApplicationController
     end
     respond_to do |format|
       format.json {
-        render :json=>{:url=>url,:redir=>is_redirect}
+        render :json=>{:url=>url,:redir=>is_redirect, :infos => infos}
       }
     end
   end
