@@ -1,6 +1,6 @@
 <div class="words_func">
   <a href="javascript:void(0);" title="播放音频" class="play_audio" onclick="jplayer_play()">播放音频</a>
-  <h1><%=word_con[0].name  %><span class="fyin"><%=word_con[0].phonetic  %></span></h1>
+  <h1><%=word_con[0].name.strip.gsub(/[0-9]/,"")  %><span class="fyin"><%=word_con[0].phonetic  %></span></h1>
   <div style="height: 0px;"><a  href='/music.mp3' id="player"></a></div>
 </div>
 

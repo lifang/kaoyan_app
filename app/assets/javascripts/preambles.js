@@ -43,7 +43,8 @@ function local_save() {
                 });
                 window.clearInterval(local_timer);
                 reset_clock();
-            } else {
+            }
+            else {
                 true_time = 0;
                 error_time += 1;
                 get_next_sentence();
@@ -193,7 +194,7 @@ function judge_url(category_id){
         },
         success : function(data) {
             if (data.redir){
-                window.open(data.url+"&info="+data.infos,"_blank",'height=768px,width=1024px,left=100px,top=10px')
+                $("#result_a").attr("href",data.url+"&info="+data.infos);
             }else{
                 window.location.href=data.url;
             }  
