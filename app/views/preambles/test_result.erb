@@ -13,6 +13,8 @@
   <div class="user_pic"><img src="/assets/user_pic.jpg" /></div>
   <h1 class="fenshu_h1">当前估分：<span><%=@scores.split(",")[3] %></span></h1>
   <div class="clear"></div>
-  <div style="margin: 40px 0;"><button class="f_btn" onclick="judge_url('<%= @category %>')">进入赶考网生成复习计划</button></div>
+  <div style="margin: 40px 0;"><a class="f_btn" id="result_a" target="_blank" href="javascript:void(0)" >进入赶考网生成复习计划</a></div>
 </div>
-
+<script type="text/javascript">
+  judge_url('<%= category %>');
+</script>
