@@ -51,7 +51,6 @@ class PreamblesController < ApplicationController
   end
 
   def test_result
-    cookies[:user_id]=nil
     @category=params[:category_id].nil? ? 4 : params[:category_id].to_i
     @scores=cookies["#{Category::FLAG[@category]}"]
     redirect_to "/pretests/judge_cookie?category_id=#{@category}" if @scores.nil?

@@ -15,17 +15,18 @@ class UserScoreInfo < ActiveRecord::Base
 
   #更新初始成绩
   def self.get_start_score(levels, index, category_id)
+    start_score = 0
     if category_id == Category::TYPE[:GRADUATE] and index == LEVEL_INDEX[:SENTENCE]
-      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:WORD]
-        + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:SENTENCE]) * MAX_SCORE[:GRADUATE]).round
+      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:WORD] +
+            levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:GRADUATE] * GRADUATE_PERCENT[:SENTENCE]) * UserScoreInfo::MAX_SCORE[:GRADUATE]).round
     elsif category_id == Category::TYPE[:CET4] and index == LEVEL_INDEX[:LINSTEN]
-      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET4] * CET_PERCENT[:WORD]
-        + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET4] * CET_PERCENT[:SENTENCE]
-        + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET4] * CET_PERCENT[:LINSTEN]) * MAX_SCORE[:CET]).round
+      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET4] * CET_PERCENT[:WORD] +
+          levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET4] * CET_PERCENT[:SENTENCE] +
+          levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET4] * CET_PERCENT[:LINSTEN])*MAX_SCORE[:CET]).round
     elsif category_id == Category::TYPE[:CET6] and index == LEVEL_INDEX[:LINSTEN]
-      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET6] * CET_PERCENT[:WORD]
-        + levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET6] * CET_PERCENT[:SENTENCE]
-        + levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET6] * CET_PERCENT[:LINSTEN]) * MAX_SCORE[:CET]).round
+      start_score = ((levels[0].to_f/Word::MAX_LEVEL[:CET6] * CET_PERCENT[:WORD] + 
+            levels[1].to_f/PracticeSentence::SENTENCE_MAX_LEVEL[:CET6] * CET_PERCENT[:SENTENCE] +
+            levels[2].to_f/PracticeSentence::LINSTEN_MAX_LEVEL[:CET6] * CET_PERCENT[:LINSTEN]) * UserScoreInfo::MAX_SCORE[:CET]).round
     end
     return start_score
   end

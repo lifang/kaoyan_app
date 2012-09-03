@@ -2,8 +2,8 @@
 <div class="words_func">
   <a href="#" title="播放音频" class="play_audio" onclick="jplayer_play()">播放音频</a>
   <h2>选择与你听到的内容相符的句子。</h2>
+  <div style="height: 0px;"><a href='/music.mp3' id="player"> </a></div>
 </div>
-<div><a  href='/music.mp3' id="player"> </a></div>
 <div class="words_con">
   <% means=[listen_con.en_mean,listen_con.error_mean] %>
   <% means.shuffle.each do |en_mean| %>
@@ -20,7 +20,7 @@
   listen_start('<%= listen_con.id %>');
   flowplayer("player", "/assets/flowplayer/flowplayer.swf", {
     clip: {
-      url: '<%= listen_con.enunciate_url %>'
+      url: '<%= ApplicationHelper::BACK_PATH_URL %><%= listen_con.enunciate_url %>'
     }
   });
   function jplayer_play(){
