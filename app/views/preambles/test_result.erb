@@ -1,6 +1,14 @@
 <%= javascript_include_tag "preambles" %>
 <%category=params[:category_id].nil? ? 4 : params[:category_id].to_i%>
-<h1 class="s_title"><img src="/assets/s_title.png" /></h1>
+<h1 class="s_title">
+  <% if @category == Category::TYPE[:CET4] %>
+    <img src="/assets/2.png" />
+  <% elsif @category == Category::TYPE[:CET6] %>
+    <img src="/assets/1.png" />
+  <% else %>
+    <img src="/assets/s_title.png" />
+  <% end %>
+</h1>
 <div class="fenshu_box">
   <div class="user_pic"><img src="/assets/user_pic.jpg" /></div>
   <h1 class="fenshu_h1">当前估分：<span><%=@scores.split(",")[3] %></span></h1>
