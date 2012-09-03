@@ -71,7 +71,6 @@ class PretestsController < ApplicationController
 
   def cet_six
     @category = Category::TYPE[:CET6]
-    cookies[Category::FLAG[@category]]="5,6,8,0"
     render "index"
   end
 
