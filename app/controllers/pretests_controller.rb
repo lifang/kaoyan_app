@@ -27,16 +27,16 @@ class PretestsController < ApplicationController
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
     @end_level=PracticeSentence::SENTENCE_MAX_LEVEL[Category::FLAG[category]]
     @user_level=(@end_level + 1)/2
-    @listen = PracticeSentence.find(:first, :conditions => ["level = ? and types= ? and category_id=?", @user_level,PracticeSentence::TYPES[:LINSTEN],category], :order => "rand()")
+    @listen = PracticeSentence.find(:first, :conditions => [" types= ? and level = ?", PracticeSentence::TYPES[:LINSTEN], @user_level], :order => "rand()")
   end
 
   def other_listens
     if params[:limit_ids]==""
-      pars=["level = ? and types= ?  and category_id=?",
-        params[:level],PracticeSentence::TYPES[:LINSTEN],params[:category_id]]
+      pars=["level = ? and types= ?",
+        params[:level],PracticeSentence::TYPES[:LINSTEN]]
     else
-      pars=["level = ? and types= ? and id not in (?) and category_id=?",
-        params[:level],PracticeSentence::TYPES[:LINSTEN],params[:limit_ids].chop,params[:category_id]]
+      pars=["level = ? and types= ? and id not in (?)",
+        params[:level],PracticeSentence::TYPES[:LINSTEN],params[:limit_ids].chop]
     end
     @listen=PracticeSentence.find(:first, :conditions => pars, :order => "rand()")
     respond_with do |format|

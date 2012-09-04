@@ -25,7 +25,7 @@ function next_word(answer_id){
     }
     select_level(answer_id);
     if (level==max_level){
-        setCookie(flag[category_id],[min_level,0,0,0],3600000,"/","gankao.co")  //单词测试结束，增加cookie
+        setCookie(flag[category_id],[min_level,0,0,0],3600000,"/")  //单词测试结束，增加cookie
         window.location.href="/preambles/sentence?category_id="+category_id
     }else{   
         $.ajax({
@@ -80,6 +80,7 @@ function local_save_start(id) {
 // 定时结束加载另一个单词
 function local_save(id) {
     if(local_start_time<=0){
+        $(".time").html("00:00");
         next_word(id);
     }    
     show_timer();
@@ -114,7 +115,8 @@ function listen_start(id) {
 
 // 定时结束加载另一个单词
 function listen_save(id) {
-    if(local_start_time==0){
+    if(local_start_time<=0){
+        $(".time").html("00:00");
         next_listen(id);
     }
     show_timer();

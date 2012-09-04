@@ -69,7 +69,7 @@ function local_save() {
 
 //重新启动定时器
 function reset_clock() {
-    local_start_time = _ans_arr.length * 3;
+    local_start_time = _ans_arr.length * 2;
     local_save_time = null;
     local_save_start();
 }
