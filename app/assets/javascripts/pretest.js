@@ -9,6 +9,7 @@ function check_answer(answer_id){
         tishi_alert("请选择答案");
         return false;
     }else{
+        $("#click_next").attr("onclick","");
         next_word(answer_id);
     }
 }
@@ -127,8 +128,11 @@ function check_listen(id){
     if($(".hover_on").length==0){
         tishi_alert("请选择答案");
         return false;
+    }else{
+        $("#click_listen").attr("onclick","");
+        next_listen(id);
     }
-    next_listen(id);
+    
 }
 
 //加载下一个听力
