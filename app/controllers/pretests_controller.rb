@@ -56,7 +56,7 @@ class PretestsController < ApplicationController
 
   def revoke_exam
     category=params[:category_id].nil? ? 4 : params[:category_id].to_i
-    UserScoreInfo.find_by_category_id_and_user_id(category,cookies[:user_id]).destroy
+    cookies[Category::FLAG[category]]=nil
     respond_to do |format|
       format.json {
         render :json=>"1"

@@ -8,8 +8,9 @@ function check_answer(answer_id){
     if($(".hover_on").length==0){
         tishi_alert("请选择答案");
         return false;
+    }else{
+        next_word(answer_id);
     }
-    next_word(answer_id);
 }
 
 //判断测试答案，并加载下一个单词
