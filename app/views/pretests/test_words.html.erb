@@ -17,10 +17,13 @@
   var local_save_time = null;
 </script>
 
-<div class="head"><div class="time">00:30</div><a href="#" class="close" onclick="revoke_exam()">CLOSE</a></div>
+<div class="head"><div class="time">00:30</div></div>
 <div class="main">
   <div class="mc_box">
     <%= render :partial=>"/pretests/word_con",:object=>@words %>
   </div>
 </div>
-<div class="foot"></div>
+<div class="foot">
+  <button  class="fs_btn" onclick="revoke_exam()">我想重新测试</button>
+</div>
+
