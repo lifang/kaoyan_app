@@ -31,6 +31,10 @@ button {cursor: pointer; font-family:"微软雅黑";}
 
 .head { height: 80px; background: #397580; position: relative; overflow: hidden;}
 .foot { height: 60px; background: #397580;}
+.foot button { margin: 5px 10px; float: right;}
+.fs_btn_div { width: 145px; margin: 0 auto; overflow: hidden;}
+.fs_btn_div button { margin:5px 0;}
+
 
 .main { height: 488px; background: #b0d3d4; padding: 10px 30px;}
 .close {
