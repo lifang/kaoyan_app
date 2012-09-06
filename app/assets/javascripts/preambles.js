@@ -137,6 +137,7 @@ function check_sentence(){
         true_time = 0;
         error_time += 1;
     }
+    $("#sure_button").attr('disabled', 'disabled');
     get_next_sentence();
 }
 
