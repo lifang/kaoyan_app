@@ -18,7 +18,7 @@
     <div class="wrap">
       <%= yield %>
     </div>
-    <div class="tab" style="display: none">
+    <div class="tab" id="revoke_confirm" style="display: none">
       <p>重新测试将取消本次的成绩</p>
       <div class="tab_btn"><button class="fs_btn" id="confirm">确定</button><button class="fs_btn" onclick="$('.tab').css('display','none')">取消</button></div>
     </div>

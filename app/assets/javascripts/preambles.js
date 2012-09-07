@@ -163,15 +163,15 @@ function get_next_sentence() {
 }
 
 function revoke_exam(){
-    generate_flash_div(".tab");
-    $(".tab #confirm").bind("click",function(){
+    generate_flash_div("#revoke_confirm");
+    $("#confirm").bind("click",function(){
         $.ajax({
             async:true,
             type: "POST",
             url: "/pretests/revoke_exam",
             dataType: "json",
             data:{
-                category_id : category_id
+                category_id : $("#category_id").val()
             },
             success : function(data) {
                 window.location.href="/"

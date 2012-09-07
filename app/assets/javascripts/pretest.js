@@ -182,8 +182,8 @@ function send_listen(level){
 }
 
 function revoke_exam(){
-    generate_flash_div(".tab");
-    $(".tab #confirm").bind("click",function(){
+    generate_flash_div("#revoke_confirm");
+    $("#confirm").bind("click",function(){
         $.ajax({
             async:true,
             type: "POST",
