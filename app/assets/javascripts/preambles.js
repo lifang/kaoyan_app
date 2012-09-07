@@ -34,7 +34,7 @@ function local_save_start() {
 function local_save() {
     var start_date = new Date();
     if (local_start_time <= 0) {
-        if (parseInt(local_start_time) == parseFloat(local_start_time)) {
+        //if (parseInt(local_start_time) == parseFloat(local_start_time)) {
             $(".time").html("00:00");
             if ($("#read").length > 0) {
                 $('#read').fadeTo("slow", 0, function(){
@@ -49,7 +49,7 @@ function local_save() {
                 error_time += 1;
                 get_next_sentence();
             }           
-        }
+       // }
     }
     if (parseInt(local_start_time) == parseFloat(local_start_time)) {
         if (local_start_time >= 10) {
@@ -69,15 +69,16 @@ function local_save() {
 
 //重新启动定时器
 function reset_clock() {
-    local_start_time = _ans_arr.length * 2;
+    local_start_time = _ans_arr.length * 4;
     local_save_time = null;
     local_save_start();
 }
 
 //将句子的特殊标点全部去掉
 function wanted_str(str){
-    return str.replace(/"/g," ").replace(/:/g," ").replace(/;/g," ").
-    replace(/\?/g," ").replace(/!/g," ").replace(/,/g," ").replace(/\./g," ").replace(/  /g," ");
+    return str.replace(/"/g," ");
+    //return str.replace(/"/g," ").replace(/:/g," ").replace(/;/g," ").
+    //replace(/\?/g," ").replace(/!/g," ").replace(/,/g," ").replace(/\./g," ").replace(/  /g," ");
 }
 
 function str2arr(str){
