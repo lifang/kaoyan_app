@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  REDIRECT_URL="http://localhost:3001/plans/end_result"
+  REDIRECT_URL="http://localhost:3001/plans/show_result"
   BACK_PATH_URL = "http://manage.gankao.co"
 
   #更新句子的等级

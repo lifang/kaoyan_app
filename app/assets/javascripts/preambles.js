@@ -35,21 +35,20 @@ function local_save() {
     var start_date = new Date();
     if (local_start_time <= 0) {
         //if (parseInt(local_start_time) == parseFloat(local_start_time)) {
-            $(".time").html("00:00");
-            if ($("#read").length > 0) {
-                $('#read').fadeTo("slow", 0, function(){
-                    $(this).remove();
-                    $("#write").fadeIn("show");
-                });
-                window.clearInterval(local_timer);
-                reset_clock();
-            }
-            else {
-                true_time = 0;
-                error_time += 1;
-                get_next_sentence();
-            }           
-       // }
+        $(".time").html("00:00");
+        if ($("#read").length > 0) {
+            $('#read').fadeTo("slow", 0, function(){
+                $(this).remove();
+                $("#write").fadeIn("show");
+            });
+            window.clearInterval(local_timer);
+            reset_clock();
+        } else {
+            true_time = 0;
+            error_time += 1;
+            get_next_sentence();
+        }
+    // }
     }
     if (parseInt(local_start_time) == parseFloat(local_start_time)) {
         if (local_start_time >= 10) {
@@ -77,8 +76,8 @@ function reset_clock() {
 //将句子的特殊标点全部去掉
 function wanted_str(str){
     return str.replace(/"/g," ");
-    //return str.replace(/"/g," ").replace(/:/g," ").replace(/;/g," ").
-    //replace(/\?/g," ").replace(/!/g," ").replace(/,/g," ").replace(/\./g," ").replace(/  /g," ");
+//return str.replace(/"/g," ").replace(/:/g," ").replace(/;/g," ").
+//replace(/\?/g," ").replace(/!/g," ").replace(/,/g," ").replace(/\./g," ").replace(/  /g," ");
 }
 
 function str2arr(str){
@@ -105,27 +104,31 @@ function arr_to_choice(arr){
     $("#select").reorder();
 }
 
+//后退
+function back_one() {
+    if(_history.length==0)return;
+    var m = _history.pop();
+    $("#choice"+m).show();
+    var current = $("#current").html().split(" ");
+    current.pop();
+    current.pop();
+    if(current.length==0){
+        $("#current").html("");
+    }else{
+        $("#current").html(""+current.join(" ")+" ");
+    }
+}
+
 //撤销
 function backspace(){
     $("#select button").show();
     $("#current").html("");
-//    if(_history.length==0)return;
-//    var m = _history.pop();
-//    $("#choice"+m).show();
-//    var current = $("#current").html().split(" ");
-//    current.pop();
-//    current.pop();
-//    if(current.length==0){
-//        $("#current").html("");
-//    }else{
-//        $("#current").html(""+current.join(" ")+" ");
-//    }
 }
 
 //选词
 function choose(m){
     $("#choice"+m).hide();
-    //_history.push(m);
+    _history.push(m);
     document.getElementById("current").innerHTML += ""+$("#choice"+m).val()+" ";
 }
 
@@ -162,6 +165,7 @@ function get_next_sentence() {
     return false;
 }
 
+//重新测试
 function revoke_exam(){
     generate_flash_div("#revoke_confirm");
     $("#confirm").bind("click",function(){
@@ -180,11 +184,7 @@ function revoke_exam(){
     })
 }
 
-
-
-
-
-
+//判断用户做到哪一步了
 function judge_url(category_id){
     $.ajax({
         async:true,
@@ -196,10 +196,23 @@ function judge_url(category_id){
         },
         success : function(data) {
             if (data.redir){
-                $("#result_a").attr("href",data.url+"&info="+data.infos);
+                //$("#result_a").attr("href",data.url+"&info="+data.infos);
+                $("#gankao_form").attr("action", data.url);
+                $("#info").val(data.infos);
             }else{
                 window.location.href=data.url;
             }  
         }
     })
+}
+
+//看好句子了
+function remember_sentence() {
+    window.clearInterval(local_timer);
+    $("#remember_a").attr('onclick', 'javascript:void(0)');
+    $('#read').fadeTo("slow", 0, function(){
+        $(this).remove();
+        $("#write").fadeIn("show");
+    });    
+    reset_clock();
 }

@@ -11,10 +11,16 @@
   <div class="words_con">
     <p class="app_p"><%= @sentence.en_mean %></p>
   </div>
+  <div class="words_func">
+    <div class="center_btn">
+      <button id="remember_a" onclick="javascript:remember_sentence();" class="confirm">我看好了</button>
+    </div>
+  </div>
 </div>
 <div class="mc_box" id="write" style="display: none;">
   <div class="words_func">
     <h2>请点击单词组成完整句子。</h2>
+    <a href="javascript:void(0)" title="退一格" onclick="javascript:back_one();" class="back">退一格</a>
     <a href="javascript:void(0)" title="点击重做" class="reset" onclick="javascript:backspace();">重置</a>
   </div>
   <div class="words_con">
@@ -25,7 +31,9 @@
     </div>
   </div>
   <div class="words_func">
-    <button id="sure_button" class="confirm" type="button" onclick="javascript:check_sentence()" >确定</button>
+    <div class="center_btn">
+      <button id="sure_button" class="confirm" type="button" onclick="javascript:check_sentence()" >确定</button>
+    </div>
   </div>
 </div>
 <script type="text/javascript">

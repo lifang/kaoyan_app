@@ -66,7 +66,7 @@ button {cursor: pointer; font-family:"微软雅黑";}
 .words_func h2 { font-size: 16px;}
 .words_func .fyin { color: #FFF; font-size: 14px; padding: 0 10px;}
 
-.play_audio, .sign, .next, .reset {
+.play_audio, .sign, .next, .reset, .back {
     width: 36px;
     height: 36px;
     display: block;
@@ -83,6 +83,13 @@ button {cursor: pointer; font-family:"微软雅黑";}
     background: url(/assets/icon.png) no-repeat 0 -114px;
 }
 
+.back {
+	position: absolute;
+	top: 5px;
+	right: 60px;
+	background: url(/assets/icon.png) no-repeat 0 -152px;
+}
+
 .sign {background: url(/assets/icon.png) no-repeat 0 -75px; float: left;}
 .next {background: url(/assets/icon.png) no-repeat 0 -37px; float: right;}
 
@@ -91,13 +98,16 @@ button {cursor: pointer; font-family:"微软雅黑";}
     padding: 0 15px;
     border: none;
     line-height: 36px;
-    background: #FFF;
+    background: #397580;
     box-shadow: 1px 1px 1px rgba(00,000,000,0.3);
     border-radius: 0.6em;
     display: block;
     float: right;
-    color: #387580;
+    color: #fff;
 }
+
+.center_btn { width: 100px; margin: 0 auto; text-align: center;}
+.center_btn button { width: 150px; height: 50px; font-size: 20px;}
 
 .words_con { padding: 5px 10px;}
 .words_ul li { height: 45px; margin: 10px 0;}

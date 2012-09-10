@@ -20,9 +20,9 @@
     <% word_con.shuffle.each do |word| %>
       <li><a href="javascript:void(0);" id="<%= word.id %>"
              onclick="$('.words_ul a').removeClass('hover_on','');$(this).addClass('hover_on');"><%= Word::TYPES[word.types] %><span><%= word.ch_mean %></span></a></li>
-    <% end %>
+      <% end %>
   </ul>
 </div>
 <div class="words_func">
-  <a href="javascript:void(0)" title="下一步" class="next" id="click_next" onclick="check_answer('<%=word_con[0].id %>')">Next</a>
+  <div class="center_btn"><button class="confirm" id="click_next" onclick="check_answer('<%=word_con[0].id %>')">确 定</button></div>
 </div>
