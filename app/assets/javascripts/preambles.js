@@ -108,7 +108,8 @@ function arr_to_choice(arr){
 function back_one() {
     if(_history.length==0)return;
     var m = _history.pop();
-    $("#choice"+m).show();
+    //$("#choice"+m).show();
+    $("#choice"+m).removeAttr('disabled');
     var current = $("#current").html().split(" ");
     current.pop();
     current.pop();
@@ -121,13 +122,15 @@ function back_one() {
 
 //撤销
 function backspace(){
-    $("#select button").show();
+    //$("#select button").show();
+    $("#select button").removeAttr('disabled');
     $("#current").html("");
 }
 
 //选词
 function choose(m){
-    $("#choice"+m).hide();
+    //$("#choice"+m).hide();
+    $("#choice"+m).attr('disabled', 'disabled');
     _history.push(m);
     document.getElementById("current").innerHTML += ""+$("#choice"+m).val()+" ";
 }
@@ -178,7 +181,13 @@ function revoke_exam(){
                 category_id : $("#category_id").val()
             },
             success : function(data) {
-                window.location.href="/"
+                if (new Number($("#category_id").val()) == 4) {
+                    window.location.href="/";
+                } else if (new Number($("#category_id").val()) == 2) {
+                    window.location.href="/cet_four";
+                } else if (new Number($("#category_id").val()) == 3) {
+                    window.location.href="/cet_six";
+                }                
             }
         })
     })

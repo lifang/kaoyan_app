@@ -10,6 +10,7 @@
   <% end %>
 </h1>
 <div class="fenshu_box">
+  <input type="hidden" id="category_id" value="<%= category %>"/>
   <div class="user_pic"><img src="/assets/user_pic.jpg" /></div>
   <h1 class="fenshu_h1">当前估分：<span><%=@scores.split(",")[3] %></span></h1>
   <div class="clear"></div>

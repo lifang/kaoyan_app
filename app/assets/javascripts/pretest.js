@@ -193,7 +193,13 @@ function revoke_exam(){
                 category_id : category_id
             },
             success : function(data) {
-                window.location.href="/"
+                if (new Number(category_id) == 4) {
+                    window.location.href="/";
+                } else if (new Number(category_id) == 2) {
+                    window.location.href="/cet_four";
+                } else if (new Number(category_id) == 3) {
+                    window.location.href="/cet_six";
+                }
             }
         })
     })

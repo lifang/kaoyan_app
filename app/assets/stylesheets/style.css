@@ -11,8 +11,10 @@ button {cursor: pointer; font-family:"微软雅黑";}
 .wrap { width: 800px; height: 628px; overflow: hidden; background: url(/assets/_bg.png) no-repeat center center;}
 
 .title { width: 627px; height: 110px; margin: 30px auto;}
-.title_h { width: 600px; margin: 0 auto; color: #397580; font-size: 26px; line-height: 42px;}
-.f_ul { width: 560px; display: block; margin: 20px auto 40px auto; font-size: 24px; color: #397580; padding-left: 40px;}
+.title_h { width: 600px; margin: 0 auto 10px auto; color: #397580; font-size: 26px; line-height: 42px;}
+
+.f_con { background: url(/assets/f_con_bg.png) no-repeat 80px center; overflow: hidden; height: 220px; margin-bottom:10px;}
+.f_ul { display: block; margin: 20px auto 40px auto; font-size: 24px; color: #397580; padding-left: 430px;}
 .f_ul li { height: 42px; line-height: 42px;}
 .title_h2 { color: #e4411e; text-align: center; font-size: 20px; margin-bottom: 15px;}
 .f_btn {
@@ -138,6 +140,7 @@ button {cursor: pointer; font-family:"微软雅黑";}
     background:  #FFF;
 }
 .drag_ul { overflow: hidden; clear: both;}
+
 .drag_ul button {
     padding: 5px 10px;
     background: #FFF;
